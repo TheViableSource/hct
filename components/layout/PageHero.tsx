@@ -1,0 +1,102 @@
+"use client";
+
+import { motion, type Variants } from "framer-motion";
+import { ReactNode } from "react";
+import { Button } from "@/components/ui/Button";
+import SectionLabel from "@/components/ui/SectionLabel";
+import DecorativeRule from "@/components/ui/DecorativeRule";
+import type { ButtonConfig } from "@/lib/types";
+
+const HEIGHTS = {
+  full: "min-h-screen",
+  tall: "min-h-[70vh]",
+  short: "min-h-[60vh]",
+};
+
+const container: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+};
+const item: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+};
+
+export default function PageHero({
+  label,
+  title,
+  subtitle,
+  actions = [],
+  height = "short",
+  glow = false,
+  caption,
+}: {
+  label?: string;
+  title: ReactNode;
+  subtitle?: ReactNode;
+  actions?: ButtonConfig[];
+  height?: keyof typeof HEIGHTS;
+  glow?: boolean;
+  caption?: ReactNode;
+}) {
+  return (
+    <section
+      className={`relative ${HEIGHTS[height]} flex items-center justify-center bg-hct-ink bg-atmosphere overflow-hidden`}
+    >
+      <div className="absolute inset-0 texture-celestial opacity-[0.04]" />
+      {glow && <div className="absolute inset-0 glow-spotlight" />}
+
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 text-center flex flex-col items-center pt-24 pb-16"
+      >
+        {label && (
+          <motion.div variants={item} className="flex flex-col items-center">
+            <SectionLabel>{label}</SectionLabel>
+            <DecorativeRule className="mx-auto" />
+          </motion.div>
+        )}
+
+        <motion.h1
+          variants={item}
+          className="font-display font-light tracking-tight leading-[1.05] text-hct-cloud text-5xl md:text-7xl max-w-4xl"
+        >
+          {title}
+        </motion.h1>
+
+        {subtitle && (
+          <motion.p
+            variants={item}
+            className="font-body font-light text-lg text-hct-mist leading-relaxed max-w-2xl mt-8"
+          >
+            {subtitle}
+          </motion.p>
+        )}
+
+        {actions.length > 0 && (
+          <motion.div
+            variants={item}
+            className="flex flex-col sm:flex-row items-center gap-4 mt-10"
+          >
+            {actions.map((a) => (
+              <Button key={a.label} href={a.href} variant={a.variant}>
+                {a.label}
+              </Button>
+            ))}
+          </motion.div>
+        )}
+
+        {caption && (
+          <motion.p
+            variants={item}
+            className="text-xs text-hct-silver/50 font-body tracking-wide mt-6 max-w-md"
+          >
+            {caption}
+          </motion.p>
+        )}
+      </motion.div>
+    </section>
+  );
+}

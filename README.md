@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hillsboro Civic Theater
 
-## Getting Started
+> Where Hillsboro Takes the Stage
 
-First, run the development server:
+The marketing website for Hillsboro Civic Theater (HCT) — a community-powered civic
+theater producing large-scale musicals with a full orchestra. Built with an emphasis
+on cinematic, emotionally immersive design.
+
+## Tech stack
+
+- **Next.js 14** (App Router, TypeScript)
+- **Tailwind CSS v3** with custom HCT design tokens (`tailwind.config.ts`)
+- **Framer Motion** for scroll reveals, staggered hero entrances, and the mobile menu
+- **Lucide React** for minimal iconography
+- **Formspree** for all form submissions (no backend required)
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev          # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Forms
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+All forms submit to Formspree. Create a form at [formspree.io](https://formspree.io),
+then set the ID:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+cp .env.example .env.local
+# edit NEXT_PUBLIC_FORMSPREE_ID
+```
 
-## Learn More
+Until an ID is set, forms post to a `PLACEHOLDER` endpoint and will not deliver.
 
-To learn more about Next.js, take a look at the following resources:
+## Pages
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Route | Purpose |
+|-------|---------|
+| `/` | Home — hero, vision, three pillars, community call, newsletter signup |
+| `/about` | Founding story, mission/vision/values, roadmap timeline |
+| `/community` | Role cards, emotional statement, community values, interest form |
+| `/donate` | Impact, donation tiers, other ways to give, donation form |
+| `/get-involved` | Founders' note, sponsorship tiers, volunteering, auditions, master form |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project structure
 
-## Deploy on Vercel
+```
+app/                  Routes, layout, metadata, sitemap, robots, icon
+components/
+  ui/                 Button, SectionLabel, DecorativeRule, AtmosphericCard, SectionReveal, icons
+  layout/             Nav, Footer, PageHero
+  sections/           Page-specific section components
+  forms/              Formspree-backed forms + shared field primitives
+lib/                  constants.ts (brand/content data), types.ts
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Design tokens
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Brand colors and fonts live in `tailwind.config.ts` under the `hct` color namespace
+(`velvet`, `navy`, `ink`, `silver`, `mist`, `cloud`, `garnet`, etc.) and the
+`display` / `body` / `accent` font families (Cormorant Garamond, Inter, Cormorant Infant).
+
+## Deployment
+
+Deploy to [Vercel](https://vercel.com) — standard Next.js, no environment variables
+required at launch except `NEXT_PUBLIC_FORMSPREE_ID`. `robots.txt` and `sitemap.xml`
+are generated natively by Next.js.
