@@ -10,21 +10,22 @@ export default function Vision() {
           <SectionReveal>
             <SectionLabel>Our Vision</SectionLabel>
             <h2 className="font-display font-light tracking-tight text-4xl md:text-5xl text-hct-cloud leading-tight mb-8">
-              Professional theater.
+              Ambitious theater.
               <br />
-              Community soul.
+              Built by volunteers.
             </h2>
             <div className="space-y-6 font-body font-light text-lg text-hct-mist leading-relaxed max-w-xl">
               <p>
                 Hillsboro Civic Theater is being built from the ground up by
-                people who love the performing arts and believe this community
-                deserves something extraordinary. We&apos;re producing
+                volunteers who love the performing arts and believe this
+                community deserves something extraordinary. We&apos;re producing
                 large-scale musicals with a full orchestra — the kind of
                 productions that transform a room and leave audiences breathless.
               </p>
               <p>
-                This isn&apos;t community theater the way you remember it. This
-                is what happens when a community decides to do things right.
+                Every performer, musician, and stagehand gives their time freely.
+                This isn&apos;t community theater the way you remember it — it&apos;s
+                what happens when a community decides to do things right.
               </p>
             </div>
           </SectionReveal>

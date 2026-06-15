@@ -56,8 +56,8 @@ export default function Hero() {
           variants={item}
           className="font-body font-light text-lg text-hct-mist leading-relaxed max-w-xl mt-10"
         >
-          A new kind of civic theater is being born here — community-powered,
-          professionally executed, and built for everyone who has ever felt the
+          A new kind of civic theater is being born here — built and run
+          entirely by volunteers, for everyone who has ever felt the
           transformative pull of live performance.
         </motion.p>
 

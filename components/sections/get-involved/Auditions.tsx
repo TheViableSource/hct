@@ -22,6 +22,11 @@ export default function Auditions() {
               interest today. You&apos;ll be among the first to hear when auditions
               are announced.
             </p>
+            <p>
+              Every role on our stage and in our pit is a volunteer role — HCT is
+              an all-volunteer company. The pay is the work itself: the rehearsals,
+              the people, and the moment the lights come up.
+            </p>
             <p className="font-accent italic text-xl text-hct-spotlight">
               Audition announcements coming soon.
             </p>

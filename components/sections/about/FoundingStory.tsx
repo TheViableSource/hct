@@ -31,11 +31,12 @@ export default function FoundingStory() {
               </p>
               <p>
                 We believe large-scale musical theater — with live orchestras,
-                professional production values, and community performers — has the
-                power to transform not just audiences, but the people who create
-                it. Every rehearsal. Every costume fitted. Every note played.
-                Every light cue called. These are acts of care for something
-                larger than any one person.
+                ambitious production values, and an all-volunteer company of
+                performers and crew — has the power to transform not just
+                audiences, but the people who create it. Every rehearsal. Every
+                costume fitted. Every note played. Every light cue called. These
+                are acts of care, given freely, for something larger than any one
+                person.
               </p>
               <p>
                 HCT is being built deliberately and carefully. We are establishing

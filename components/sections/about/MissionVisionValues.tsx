@@ -21,10 +21,10 @@ export default function MissionVisionValues() {
                 Mission
               </p>
               <p className="font-body font-light text-lg text-hct-mist leading-relaxed">
-                To produce extraordinary large-scale musical theater powered by
-                community participation and professional execution — creating
-                immersive, emotionally transformative experiences accessible to
-                all of Hillsboro.
+                To produce extraordinary large-scale musical theater powered
+                entirely by community volunteers — creating immersive,
+                emotionally transformative experiences accessible to all of
+                Hillsboro.
               </p>
             </div>
           </SectionReveal>

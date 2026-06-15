@@ -8,7 +8,7 @@ import CTASection from "@/components/sections/shared/CTASection";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Hillsboro Civic Theater was founded on a belief: that this community deserves a world-class theatrical experience built by the people who live here.",
+    "Hillsboro Civic Theater was founded on a belief: that this community deserves an extraordinary theatrical experience, built and run entirely by the volunteers who live here.",
 };
 
 export default function AboutPage() {
@@ -22,7 +22,7 @@ export default function AboutPage() {
             Why We Exist
           </>
         }
-        subtitle="HCT was founded on a simple but powerful belief: that this community deserves a world-class theatrical experience built by the people who live here."
+        subtitle="HCT was founded on a simple but powerful belief: that this community deserves an extraordinary theatrical experience — built and run entirely by the volunteers who live here."
         height="short"
       />
       <FoundingStory />

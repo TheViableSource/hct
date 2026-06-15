@@ -16,14 +16,17 @@ export default function WhyItMatters() {
             <div className="space-y-6 font-body font-light text-lg text-hct-mist leading-relaxed max-w-xl">
               <p>
                 HCT is in its founding phase. We are building the operational
-                foundation, the community relationships, and the artistic
-                capacity to produce world-class theater right here in Hillsboro.
+                foundation, the community relationships, and the volunteer
+                company that will produce extraordinary theater right here in
+                Hillsboro.
               </p>
               <p>
-                Your donation at this stage is especially meaningful. Founding
-                donors are investing in the institution itself — before the first
-                curtain rises, before the first ticket is sold. You are making the
-                whole thing possible.
+                Because HCT is run entirely by volunteers, your gift goes
+                directly to what reaches the stage — the orchestra, the costumes,
+                the sets, the lights — never to salaries. Founding donors are
+                investing in the institution itself, before the first curtain
+                rises, before the first ticket is sold. You are making the whole
+                thing possible.
               </p>
               <p>
                 Every production we stage — every live orchestra, every costume,

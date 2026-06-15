@@ -14,7 +14,7 @@ export const BRAND = {
   wordmark: "HILLSBORO CIVIC THEATER",
   tagline: "Where Hillsboro Takes the Stage",
   mission:
-    "A community-powered civic theater producing large-scale musicals with a full orchestra.",
+    "A volunteer-run, community-powered civic theater producing large-scale musicals with a full orchestra.",
   location: "Hillsboro · Oregon",
   email: "hello@hillsborocivictheater.org",
   social: {
@@ -45,8 +45,8 @@ export const PILLARS: Pillar[] = [
   },
   {
     icon: "circle",
-    title: "Community Powered",
-    body: "Every person on stage, in the pit, behind the curtain, and in the seats is part of what makes HCT possible. This theater belongs to Hillsboro.",
+    title: "Volunteer Powered",
+    body: "Every person on stage, in the pit, and behind the curtain is a volunteer. From the orchestra to the box office, HCT is built and run by neighbors who give their time because they believe this city deserves it.",
   },
   {
     icon: "curtain",
@@ -89,7 +89,7 @@ export const COMMUNITY_VALUES: ValueItem[] = [
   },
   {
     title: "Growth",
-    body: "We believe in developing talent and capacity at every level. Whether you're a seasoned professional or trying this for the first time, HCT is a place to grow.",
+    body: "We believe in developing talent and capacity at every level. Whether you've performed for years or you're trying this for the first time, HCT is a place to grow.",
   },
   {
     title: "Craft",

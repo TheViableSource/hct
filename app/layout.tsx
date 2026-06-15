@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     template: "%s | Hillsboro Civic Theater",
   },
   description:
-    "A community-powered civic theater producing large-scale musicals with a full orchestra. Where Hillsboro Takes the Stage.",
+    "A volunteer-run, community-powered civic theater producing large-scale musicals with a full orchestra. Where Hillsboro Takes the Stage.",
   openGraph: {
     siteName: "Hillsboro Civic Theater",
     locale: "en_US",

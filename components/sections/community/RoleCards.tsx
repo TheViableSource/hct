@@ -7,11 +7,16 @@ export default function RoleCards() {
   return (
     <section className="bg-hct-velvet py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
-        <SectionReveal className="mb-16">
+        <SectionReveal className="mb-16 max-w-2xl">
           <SectionLabel>Find Your Place</SectionLabel>
-          <h2 className="font-display font-light tracking-tight text-4xl md:text-5xl text-hct-cloud">
+          <h2 className="font-display font-light tracking-tight text-4xl md:text-5xl text-hct-cloud mb-6">
             There&apos;s a role for everyone.
           </h2>
+          <p className="font-body font-light text-lg text-hct-mist leading-relaxed">
+            HCT is an all-volunteer theater. Every role below is a way to give
+            your time — and become part of something Hillsboro is building
+            together.
+          </p>
         </SectionReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
