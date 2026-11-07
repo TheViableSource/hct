@@ -1,7 +1,8 @@
 "use client";
 
+import ConsentFields from "./ConsentFields";
 import { FormEvent } from "react";
-import { useFormspree } from "./useFormspree";
+import { useWebsiteForm } from "./useWebsiteForm";
 import { ActionButton } from "@/components/ui/Button";
 import {
   TextField,
@@ -12,28 +13,10 @@ import {
   SuccessMessage,
 } from "./fields";
 
-const INTENTS = [
-  "Become a Founding Sponsor",
-  "Make a Donation",
-  "Perform (singer / actor / dancer)",
-  "Play in the Orchestra",
-  "Join as a Director / Choreographer / Music Director",
-  "Volunteer My Time",
-  "Offer In-Kind Support or Services",
-  "Just stay informed for now",
-];
-
-const SPONSOR_LEVELS = [
-  "Community Sponsor ($250–$999)",
-  "Production Sponsor ($1,000–$4,999)",
-  "Season Sponsor ($5,000–$9,999)",
-  "Title Sponsor ($10,000+)",
-  "Not sure yet",
-  "N/A",
-];
+import { INTENTS, SPONSOR_LEVELS } from "@/lib/forms/schema.mjs";
 
 export default function MasterForm() {
-  const { status, submit } = useFormspree();
+  const { status, submit, error } = useWebsiteForm();
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -41,13 +24,14 @@ export default function MasterForm() {
     await submit({
       firstName: data.get("firstName"),
       lastName: data.get("lastName"),
+      newsletterConsent: data.get("newsletterConsent") === "on",
+      website: data.get("website") || "",
       email: data.get("email"),
       phone: data.get("phone"),
       organization: data.get("organization"),
       intent: data.getAll("intent"),
-      sponsorLevel: data.get("sponsorLevel"),
+      sponsorLevel: data.get("sponsorLevel") || "",
       about: data.get("about"),
-      _subject: "HCT: Get Involved inquiry",
       form: "get-involved",
     });
   }
@@ -114,6 +98,7 @@ export default function MasterForm() {
         optional
         disabled={submitting}
       />
+      <ConsentFields disabled={submitting} />
       <div className="pt-2">
         <ActionButton type="submit" disabled={submitting}>
           {submitting ? "Sending…" : "Let's Talk"}
@@ -122,7 +107,7 @@ export default function MasterForm() {
       <p className="text-xs text-hct-silver font-body leading-relaxed">
         We&apos;ll be in touch soon. Each message matters to us. We reply to every person.
       </p>
-      {status === "error" && <FormError />}
+      {status === "error" && <FormError message={error} />}
     </form>
   );
 }

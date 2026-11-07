@@ -1,3 +1,5 @@
+export const SITE_URL = "https://hillsborocivictheatre.com";
+
 import type {
   NavLink,
   Pillar,
@@ -22,12 +24,6 @@ export const BRAND = {
     instagram: "https://instagram.com",
   },
 } as const;
-
-// Formspree endpoint: replace PLACEHOLDER with the real form ID once the
-// account is set up (or set NEXT_PUBLIC_FORMSPREE_ID).
-export const FORMSPREE_ID =
-  process.env.NEXT_PUBLIC_FORMSPREE_ID || "PLACEHOLDER";
-export const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_ID}`;
 
 export const NAV_LINKS: NavLink[] = [
   { label: "Home", href: "/" },

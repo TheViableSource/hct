@@ -12,7 +12,7 @@ on cinematic, emotionally immersive design.
 - **Tailwind CSS v3** with custom HCT design tokens (`tailwind.config.ts`)
 - **Framer Motion** for scroll reveals, staggered hero entrances, and the mobile menu
 - **Lucide React** for minimal iconography
-- **Formspree** for all form submissions (no backend required)
+- **Private SQLite storage** for opt-in newsletter signups and inquiries (Node 22.23+)
 
 ## Getting started
 
@@ -23,15 +23,17 @@ npm run dev          # http://localhost:3000
 
 ## Forms
 
-All forms submit to Formspree. Create a form at [formspree.io](https://formspree.io),
-then set the ID:
+Forms use the same-origin POST-only `/api/forms` route. No mailing service is connected.
+Inquiry forms have an optional, unchecked newsletter opt-in. Newsletter signups
+require that consent. Online donations are disabled, including server-side rejection.
 
-```bash
-cp .env.example .env.local
-# edit NEXT_PUBLIC_FORMSPREE_ID
-```
+See [OPERATIONS.md](OPERATIONS.md) before deployment. An admin must configure
+`HCT_FORM_DATA_DIR` outside all public/deployment/Git trees, initialize its private
+SQLite database, and set `HCT_FORM_ORIGINS`. Missing or unsafe configuration fails
+closed. There is no public admin, list, export, or download route.
 
-Until an ID is set, forms post to a `PLACEHOLDER` endpoint and will not deliver.
+Local checks: `npm run typecheck`, `npm test`, `npm run build`. Tests use isolated,
+temporary `example.invalid` records and remove only their own synthetic files.
 
 ## Pages
 
@@ -51,7 +53,7 @@ components/
   ui/                 Button, SectionLabel, DecorativeRule, AtmosphericCard, SectionReveal, icons
   layout/             Nav, Footer, PageHero
   sections/           Page-specific section components
-  forms/              Formspree-backed forms + shared field primitives
+  forms/              Website-backed forms + shared field primitives
 lib/                  constants.ts (brand/content data), types.ts
 ```
 
@@ -63,6 +65,6 @@ Brand colors and fonts live in `tailwind.config.ts` under the `hct` color namesp
 
 ## Deployment
 
-Deploy to [Vercel](https://vercel.com) — standard Next.js, no environment variables
-required at launch except `NEXT_PUBLIC_FORMSPREE_ID`. `robots.txt` and `sitemap.xml`
-are generated natively by Next.js.
+Deploy to persistent Node hosting using [DEPLOY-PLESK.md](DEPLOY-PLESK.md) and
+[OPERATIONS.md](OPERATIONS.md). Ephemeral/serverless disks are not supported by
+this storage design. No form data belongs in Git or the app deployment folder.

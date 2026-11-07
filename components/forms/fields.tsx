@@ -56,6 +56,7 @@ export function TextField({
         id={name}
         name={name}
         type={type}
+        maxLength={type === "email" ? 254 : 200}
         required={required}
         disabled={disabled}
         placeholder={placeholder}
@@ -84,6 +85,7 @@ export function TextArea({
         {label}
       </FieldLabel>
       <textarea
+        maxLength={4000}
         id={name}
         name={name}
         rows={4}
@@ -173,10 +175,10 @@ export function SelectField({
   );
 }
 
-export function FormError() {
+export function FormError({ message }: { message?: string }) {
   return (
     <p role="alert" className="text-rose-300 text-sm font-body">
-      Something went wrong. Please try again, or email us directly.
+      {message || "We could not save your form. Please try again later."}
     </p>
   );
 }

@@ -1,3 +1,4 @@
+import { SITE_URL } from "@/lib/constants";
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter, Cormorant_Infant } from "next/font/google";
 import "./globals.css";
@@ -27,7 +28,7 @@ const cormorantInfant = Cormorant_Infant({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://hillsborocivictheater.org"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Hillsboro Civic Theater",
     template: "%s | Hillsboro Civic Theater",

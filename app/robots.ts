@@ -1,3 +1,4 @@
+import { SITE_URL } from "@/lib/constants";
 import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
@@ -6,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://hillsborocivictheater.org/sitemap.xml",
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

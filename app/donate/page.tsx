@@ -25,7 +25,7 @@ export default function DonatePage() {
           </>
         }
         subtitle="Help build a theater for Hillsboro. Your gift supports the people and work that bring each show to life. Together, we can make something special."
-        actions={[{ label: "Donate Now", href: "#donate-form", variant: "primary" }]}
+        actions={[{ label: "Online Giving Updates", href: "#donate-form", variant: "primary" }]}
         height="tall"
         glow
         caption="Hillsboro Civic Theater is a 501(c)(3) nonprofit organization. All donations are tax-deductible."
@@ -38,10 +38,10 @@ export default function DonatePage() {
         <div className="max-w-6xl mx-auto px-6 md:px-10">
           <SectionReveal className="mb-12">
             <h3 className="font-display font-light tracking-tight text-3xl md:text-4xl text-hct-cloud mb-4">
-              Ready to give?
+              Online Giving Coming Soon
             </h3>
             <p className="font-body font-light text-lg text-hct-mist leading-relaxed max-w-xl">
-              Your gift helps HCT get ready for its first shows.
+              We are setting up a safe way to give. Online gifts are not available yet.
             </p>
           </SectionReveal>
           <SectionReveal delay={0.1}>

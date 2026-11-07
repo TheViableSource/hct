@@ -7,7 +7,7 @@ production Next.js build and listens on the port Passenger provides.
 ## Prerequisites
 
 - Plesk with the **Node.js** extension installed.
-- **Node.js 18.17+** selected for the domain (Next.js 14 requires it).
+- **Node.js 22.23+** selected for the domain (required for built-in SQLite).
 - The site files in the domain (via Git pull or upload — see step 1).
 
 ## Steps
@@ -25,21 +25,19 @@ Plesk → domain → **Node.js**, then set:
 
 | Field | Value |
 |-------|-------|
-| **Node.js version** | 18.17+ (or newer LTS) |
+| **Node.js version** | 22.23+ (or newer LTS) |
 | **Application Mode** | `production` |
 | **Application Root** | the folder containing `package.json` (e.g. `/httpdocs`) |
 | **Application Startup File** | `server.js` |
 | **Document Root** | `/httpdocs/public` (or leave the domain default) |
 
-### 3. Set the build-time environment variable
-Before building, add the Formspree ID under **Custom environment variables**:
+### 3. Set up private form storage
 
-```
-NEXT_PUBLIC_FORMSPREE_ID = your_real_formspree_id
-```
-
-> ⚠️ `NEXT_PUBLIC_*` values are baked in at **build time**, so this must be set
-> *before* you run the build in the next step. If you change it later, rebuild.
+Follow [OPERATIONS.md](OPERATIONS.md) first. The server-only runtime settings are
+`HCT_FORM_DATA_DIR` and `HCT_FORM_ORIGINS`. There is no Formspree connection.
+Initialize the private SQLite store as the application user before enabling forms.
+Do not place data in the application root, public root, Git, or deployment tree.
+Restart every Passenger app instance after changing runtime settings.
 
 ### 4. Install dependencies
 Click **NPM Install** in the Node.js panel (runs `npm install`).
@@ -69,6 +67,5 @@ which serves the built site. Visit the domain to confirm.
   at the folder with `package.json` and Startup File is exactly `server.js`.
 - **Old content after deploy:** you forgot to re-run **build**, or Passenger is
   serving a cached process — hit **Restart App**.
-- **Forms don't deliver:** `NEXT_PUBLIC_FORMSPREE_ID` was missing/wrong at build
-  time. Set it (step 3) and rebuild.
+- **Forms return unavailable:** use the private `forms:admin diagnose` and `check` commands from OPERATIONS.md. Check runtime settings, initialized storage, permissions, disk space, and rate/storage limits. No email delivery is configured.
 - `npm start` and `node server.js` are equivalent here — both run `server.js`.
