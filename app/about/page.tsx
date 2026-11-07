@@ -8,7 +8,7 @@ import CTASection from "@/components/sections/shared/CTASection";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Hillsboro Civic Theater was founded on a belief: that this community deserves an extraordinary theatrical experience, built and run entirely by the volunteers who live here.",
+    "Hillsboro deserves great live theater. Meet the local volunteers building HCT and learn what we hope to bring to the stage.",
 };
 
 export default function AboutPage() {
@@ -18,11 +18,11 @@ export default function AboutPage() {
         label="Our Story"
         title={
           <>
-            Hillsboro Civic Theater —<br />
+            Hillsboro Civic Theater<br />
             Why We Exist
           </>
         }
-        subtitle="HCT was founded on a simple but powerful belief: that this community deserves an extraordinary theatrical experience — built and run entirely by the volunteers who live here."
+        subtitle="We believe Hillsboro deserves great live theater. HCT is built and run by the volunteers who call this place home."
         height="short"
       />
       <FoundingStory />
@@ -30,7 +30,7 @@ export default function AboutPage() {
       <Timeline />
       <CTASection
         heading="Ready to help us build this?"
-        body="Whether you give, volunteer, perform, or simply spread the word — every act of support makes HCT more real."
+        body="Give, volunteer, perform, or spread the word. Every bit of help brings HCT closer to the stage."
         actions={[
           { label: "Get Involved", href: "/get-involved", variant: "primary" },
           { label: "Make a Donation", href: "/donate", variant: "ghost" },

@@ -15,23 +15,13 @@ export default function WhyItMatters() {
             </h2>
             <div className="space-y-6 font-body font-light text-lg text-hct-mist leading-relaxed max-w-xl">
               <p>
-                HCT is in its founding phase. We are building the operational
-                foundation, the community relationships, and the volunteer
-                company that will produce extraordinary theater right here in
-                Hillsboro.
+                HCT is just getting started. We are planning how it will run, building local ties, and bringing volunteers together. Your help brings great theater closer to our stage.
               </p>
               <p>
-                Because HCT is run entirely by volunteers, your gift goes
-                directly to what reaches the stage — the orchestra, the costumes,
-                the sets, the lights — never to salaries. Founding donors are
-                investing in the institution itself, before the first curtain
-                rises, before the first ticket is sold. You are making the whole
-                thing possible.
+                Volunteers run HCT. Your gift supports the orchestra, costumes, sets, and lights. It never pays salaries. When you give now, you help build the theater before our first show or ticket sale.
               </p>
               <p>
-                Every production we stage — every live orchestra, every costume,
-                every set piece, every spotlight — will be powered by this
-                community&apos;s belief in what we&apos;re building together.
+                Our community will help bring every show to life. From the first note to the final bow, your support makes it possible.
               </p>
             </div>
           </SectionReveal>

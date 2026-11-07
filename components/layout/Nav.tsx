@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { NAV_LINKS, BRAND } from "@/lib/constants";
 
@@ -11,8 +10,8 @@ export default function Nav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
-  // Solid dark + blur once we've scrolled past the top of the hero.
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
@@ -20,106 +19,82 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll while the full-screen menu is open.
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
+    const dialog = dialogRef.current;
+    if (!dialog) return;
+    const previousOverflow = document.body.style.overflow;
+    if (menuOpen) {
+      dialog.showModal();
+      document.body.style.overflow = "hidden";
+    } else {
+      dialog.close();
+    }
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
     };
   }, [menuOpen]);
 
-  // Close the menu on route change.
+  useEffect(() => setMenuOpen(false), [pathname]);
+
   useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const closeOnDesktop = () => {
+      if (desktop.matches) setMenuOpen(false);
+    };
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => desktop.removeEventListener("change", closeOnDesktop);
+  }, []);
 
   return (
     <>
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <header
-        className={`fixed top-0 inset-x-0 z-50 transition-colors duration-500 ${
+        className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
           scrolled || menuOpen
-            ? "bg-hct-ink/90 backdrop-blur-md border-b border-hct-silver/10"
-            : "bg-transparent"
+            ? "bg-hct-ink/95 backdrop-blur-md border-b border-hct-silver/20"
+            : "bg-hct-ink/80"
         }`}
       >
-        <nav className="max-w-6xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
-          <Link
-            href="/"
-            className="font-display font-light tracking-[0.3em] text-sm text-hct-cloud hover:text-white transition-colors"
-          >
+        <nav aria-label="Main navigation" className="max-w-6xl mx-auto px-5 sm:px-6 md:px-10 h-20 flex items-center justify-between gap-4">
+          <Link href="/" aria-label="Hillsboro Civic Theater home" className="font-display font-light tracking-[0.15em] sm:tracking-[0.25em] text-sm text-hct-cloud hover:text-white transition-colors py-3 max-w-[15rem] lg:max-w-none">
             {BRAND.wordmark}
           </Link>
-
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
-            {NAV_LINKS.map((link) => {
-              const active = pathname === link.href;
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`font-body text-sm tracking-widest uppercase transition-colors ${
-                    active
-                      ? "text-hct-cloud"
-                      : "text-hct-silver hover:text-hct-cloud"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-            <Link
-              href="/get-involved"
-              className="font-body text-sm tracking-widest uppercase border border-hct-silver/40 text-hct-silver hover:border-hct-silver hover:text-hct-cloud px-6 py-2.5 rounded-sm transition-colors duration-300"
-            >
+          <div className="hidden lg:flex items-center gap-6">
+            {NAV_LINKS.filter((link) => link.href !== "/get-involved").map((link) => (
+              <Link key={link.href} href={link.href} aria-current={pathname === link.href ? "page" : undefined}
+                className={`font-body text-xs tracking-widest uppercase py-3 transition-colors ${pathname === link.href ? "text-hct-cloud underline underline-offset-8 decoration-hct-silver" : "text-hct-silver hover:text-hct-cloud"}`}>
+                {link.label}
+              </Link>
+            ))}
+            <Link href="/get-involved" aria-current={pathname === "/get-involved" ? "page" : undefined} className="font-body text-xs tracking-widest uppercase border border-hct-silver/50 text-hct-cloud hover:border-hct-silver px-5 py-3 rounded-sm transition-colors whitespace-nowrap">
               Get Involved
             </Link>
           </div>
-
-          {/* Mobile toggle */}
-          <button
-            type="button"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            onClick={() => setMenuOpen((v) => !v)}
-            className="md:hidden text-hct-cloud p-2 -mr-2"
-          >
-            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          <button type="button" aria-label="Open menu" aria-expanded={menuOpen} aria-controls="mobile-menu" aria-haspopup="dialog" onClick={() => setMenuOpen(true)} className="lg:hidden text-hct-cloud min-h-11 min-w-11 flex items-center justify-center shrink-0">
+            <Menu size={24} aria-hidden="true" />
           </button>
         </nav>
       </header>
 
-      {/* Mobile full-screen overlay */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            className="fixed inset-0 z-40 bg-hct-ink/98 backdrop-blur-xl md:hidden flex flex-col items-center justify-center gap-8"
-          >
-            {NAV_LINKS.map((link, i) => (
-              <motion.div
-                key={link.href}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.08 * i + 0.1, duration: 0.4 }}
-              >
-                <Link
-                  href={link.href}
-                  className={`font-display font-light text-4xl tracking-tight transition-colors ${
-                    pathname === link.href
-                      ? "text-hct-cloud"
-                      : "text-hct-silver hover:text-hct-cloud"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              </motion.div>
+      {/* A native modal keeps keyboard focus in the menu and supports Escape. */}
+      <dialog ref={dialogRef} id="mobile-menu" aria-label="Site menu" onCancel={() => setMenuOpen(false)} onClose={() => setMenuOpen(false)} className="hct-mobile-menu fixed inset-0 m-0 w-full h-full max-w-none max-h-none border-0 bg-hct-ink text-hct-cloud p-0">
+        <div className="min-h-full flex flex-col">
+          <div className="h-20 shrink-0 flex items-center justify-between gap-4 px-5 sm:px-6 md:px-10 border-b border-hct-silver/20">
+            <p className="font-display text-lg tracking-widest">HCT</p>
+            <button type="button" autoFocus aria-label="Close menu" onClick={() => setMenuOpen(false)} className="min-h-11 min-w-11 flex items-center justify-center">
+              <X size={24} aria-hidden="true" />
+            </button>
+          </div>
+          <nav aria-label="Mobile navigation" className="flex-1 flex flex-col items-center justify-center gap-3 px-6 py-8">
+            {NAV_LINKS.map((link) => (
+              <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)} aria-current={pathname === link.href ? "page" : undefined}
+                className={`font-display text-3xl sm:text-4xl text-center px-4 py-3 transition-colors ${pathname === link.href ? "text-hct-cloud underline underline-offset-8 decoration-hct-silver/60" : "text-hct-silver hover:text-hct-cloud"}`}>
+                {link.label}
+              </Link>
             ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </nav>
+        </div>
+      </dialog>
     </>
   );
 }

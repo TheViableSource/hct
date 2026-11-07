@@ -10,22 +10,16 @@ export default function Vision() {
           <SectionReveal>
             <SectionLabel>Our Vision</SectionLabel>
             <h2 className="font-display font-light tracking-tight text-4xl md:text-5xl text-hct-cloud leading-tight mb-8">
-              Ambitious theater.
+              Big dreams on stage.
               <br />
               Built by volunteers.
             </h2>
             <div className="space-y-6 font-body font-light text-lg text-hct-mist leading-relaxed max-w-xl">
               <p>
-                Hillsboro Civic Theater is being built from the ground up by
-                volunteers who love the performing arts and believe this
-                community deserves something extraordinary. We&apos;re producing
-                large-scale musicals with a full orchestra — the kind of
-                productions that transform a room and leave audiences breathless.
+                Local volunteers are building Hillsboro Civic Theater from the ground up. We love live shows and want to bring something special to our city. Our musicals have a full live orchestra. We want every show to stay with you long after the lights go down.
               </p>
               <p>
-                Every performer, musician, and stagehand gives their time freely.
-                This isn&apos;t community theater the way you remember it — it&apos;s
-                what happens when a community decides to do things right.
+                Every performer, musician, and crew member gives their time for free. We bring our skills, care, and love of theater to each show.
               </p>
             </div>
           </SectionReveal>
@@ -36,8 +30,7 @@ export default function Vision() {
               <div className="absolute inset-0 glow-spotlight rounded-sm" />
               <div className="relative">
                 <p className="font-accent italic text-2xl md:text-3xl text-hct-spotlight leading-relaxed">
-                  &ldquo;The kind of theater that stops time — and reminds you
-                  what it feels like to be alive.&rdquo;
+                  &ldquo;The kind of theater that stops time and reminds you what it feels like to be alive.&rdquo;
                 </p>
                 <div className="w-12 h-px bg-hct-silver/40 my-8" />
                 <p className="font-body text-xs tracking-[0.3em] uppercase text-hct-silver/60">

@@ -16,7 +16,7 @@ const item: Variants = {
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-hct-ink overflow-hidden">
+    <section className="relative min-h-screen min-h-[100svh] flex items-center justify-center bg-hct-ink overflow-hidden pt-32 pb-28 sm:pt-36 sm:pb-32">
       {/* Atmospheric layers */}
       <div className="absolute inset-0 bg-atmosphere" />
       <div className="absolute inset-0 texture-celestial opacity-[0.05]" />
@@ -32,7 +32,7 @@ export default function Hero() {
 
       <motion.div
         variants={container}
-        initial="hidden"
+        initial={false}
         animate="show"
         className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 text-center flex flex-col items-center"
       >
@@ -56,9 +56,7 @@ export default function Hero() {
           variants={item}
           className="font-body font-light text-lg text-hct-mist leading-relaxed max-w-xl mt-10"
         >
-          A new kind of civic theater is being born here — built and run
-          entirely by volunteers, for everyone who has ever felt the
-          transformative pull of live performance.
+          A new theater is taking shape in Hillsboro. Local volunteers build and run it. If you love the thrill of a live show, you belong here.
         </motion.p>
 
         <motion.div

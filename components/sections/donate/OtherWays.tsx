@@ -4,16 +4,16 @@ import SectionLabel from "@/components/ui/SectionLabel";
 
 const ITEMS = [
   {
-    title: "In-Kind Donations",
-    body: "Materials, services, equipment, and expertise can be as valuable as financial gifts. If you have something to offer, let's talk.",
+    title: "Give Goods or Services",
+    body: "You can give supplies, tools, services, or skills. These gifts matter as much as money. Have something to offer? Let’s talk.",
   },
   {
-    title: "Corporate Sponsorship",
-    body: "We offer meaningful sponsorship opportunities for businesses who want to be part of HCT's founding story.",
+    title: "Business Sponsors",
+    body: "Your business can help HCT get started. Become a sponsor and be part of our story.",
   },
   {
     title: "Planned Giving",
-    body: "Consider including HCT in your estate planning to leave a lasting legacy for Hillsboro's arts community.",
+    body: "You can leave a gift to HCT in your will or estate plan. Help keep the arts alive in Hillsboro for years to come.",
   },
 ];
 
@@ -24,7 +24,7 @@ export default function OtherWays() {
         <SectionReveal className="mb-16">
           <SectionLabel>Beyond Dollars</SectionLabel>
           <h2 className="font-display font-light tracking-tight text-4xl md:text-5xl text-hct-cloud">
-            There are many ways to invest in HCT.
+            There are many ways to help HCT.
           </h2>
         </SectionReveal>
 

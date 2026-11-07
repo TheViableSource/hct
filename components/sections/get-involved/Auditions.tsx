@@ -13,19 +13,13 @@ export default function Auditions() {
           </h2>
           <div className="space-y-6 font-body font-light text-lg text-hct-mist leading-relaxed">
             <p>
-              We are building our artistic community now — before auditions open,
-              before rehearsals begin, before the first note is played.
+              We are bringing our first cast and orchestra together now. Auditions and rehearsals are still ahead.
             </p>
             <p>
-              If you&apos;re a singer, actor, dancer, or instrumentalist who wants
-              to be part of HCT&apos;s inaugural productions, register your
-              interest today. You&apos;ll be among the first to hear when auditions
-              are announced.
+              Sing, act, dance, or play an instrument? Tell us you want to join our first shows. You&apos;ll be among the first to hear about auditions.
             </p>
             <p>
-              Every role on our stage and in our pit is a volunteer role — HCT is
-              an all-volunteer company. The pay is the work itself: the rehearsals,
-              the people, and the moment the lights come up.
+              All roles on stage and in the orchestra are unpaid. Everyone at HCT is a volunteer. We come for the work, the people, and the moment the lights come up.
             </p>
             <p className="font-accent italic text-xl text-hct-spotlight">
               Audition announcements coming soon.
@@ -33,7 +27,7 @@ export default function Auditions() {
           </div>
           <div className="mt-10">
             <Button href="#master-form" variant="ghost">
-              Register Your Artistic Interest
+              Join Our Cast or Orchestra
             </Button>
           </div>
         </SectionReveal>

@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     template: "%s | Hillsboro Civic Theater",
   },
   description:
-    "A volunteer-run, community-powered civic theater producing large-scale musicals with a full orchestra. Where Hillsboro Takes the Stage.",
+    "A theater run by local volunteers. We bring big musicals to the stage with a full live orchestra. Where Hillsboro Takes the Stage.",
   openGraph: {
     siteName: "Hillsboro Civic Theater",
     locale: "en_US",
@@ -56,7 +56,7 @@ export default function RootLayout({
         className={`${cormorant.variable} ${inter.variable} ${cormorantInfant.variable} font-body bg-hct-ink text-hct-mist antialiased`}
       >
         <Nav />
-        <main>{children}</main>
+        <main id="main-content" tabIndex={-1}>{children}</main>
         <Footer />
       </body>
     </html>

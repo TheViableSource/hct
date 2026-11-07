@@ -9,8 +9,7 @@ export default function StayConnected() {
         <SectionReveal className="max-w-3xl">
           <SectionLabel>Stay in the Loop</SectionLabel>
           <h3 className="font-display font-light tracking-tight text-3xl md:text-4xl text-hct-cloud leading-tight mb-10">
-            Be first to know when auditions open, tickets go on sale, and
-            history gets made.
+            Get the first news about auditions, tickets, and what comes next.
           </h3>
           <NewsletterForm />
         </SectionReveal>

@@ -9,9 +9,7 @@ export default function FoundingStory() {
           <SectionReveal>
             <div className="border-l border-hct-silver/20 pl-8">
               <p className="font-accent italic text-2xl md:text-3xl text-hct-spotlight leading-relaxed">
-                &ldquo;We are not trying to be Broadway. We are trying to be
-                something more important — the theater that Hillsboro builds for
-                itself.&rdquo;
+                &ldquo;We are not trying to be Broadway. We are trying to be something more important: the theater that Hillsboro builds for itself.&rdquo;
               </p>
             </div>
           </SectionReveal>
@@ -23,26 +21,13 @@ export default function FoundingStory() {
             </h2>
             <div className="space-y-6 font-body font-light text-lg text-hct-mist leading-relaxed max-w-prose">
               <p>
-                Hillsboro Civic Theater began with a question: Why doesn&apos;t a
-                city like ours have a civic theater institution worthy of our
-                community? The performing arts have always been one of the most
-                powerful ways that people come together, feel something real, and
-                leave changed.
+                Hillsboro Civic Theater began with a question: Why not build a theater that reflects our city? Live shows bring people together. They help us feel, connect, and see the world in new ways.
               </p>
               <p>
-                We believe large-scale musical theater — with live orchestras,
-                ambitious production values, and an all-volunteer company of
-                performers and crew — has the power to transform not just
-                audiences, but the people who create it. Every rehearsal. Every
-                costume fitted. Every note played. Every light cue called. These
-                are acts of care, given freely, for something larger than any one
-                person.
+                We believe big musicals can change lives, both in the audience and on stage. Our shows bring together live orchestras, great sets, and a volunteer cast and crew. Each costume, note, and light takes care. We give that care freely to make something together.
               </p>
               <p>
-                HCT is being built deliberately and carefully. We are establishing
-                the foundation — the relationships, the resources, the community —
-                before the curtain ever rises. Because when it does, it will rise
-                right.
+                We are taking the time to build HCT with care. Before our first show, we are finding the people, funds, and tools we need. We want to be ready when the curtain rises.
               </p>
             </div>
           </SectionReveal>

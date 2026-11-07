@@ -13,7 +13,7 @@ export default function NewsletterForm() {
     const form = new FormData(e.currentTarget);
     await submit({
       email: form.get("email"),
-      _subject: "HCT — New newsletter signup",
+      _subject: "HCT: New newsletter signup",
       form: "newsletter",
     });
   }
@@ -40,7 +40,7 @@ export default function NewsletterForm() {
         disabled={submitting}
         placeholder="Your email address"
         aria-label="Your email address"
-        className="flex-1 bg-transparent border-b border-hct-silver/40 text-hct-cloud placeholder:text-hct-silver/40 focus:border-hct-silver outline-none py-3 font-body font-light transition-colors disabled:opacity-50"
+        className="flex-1 bg-transparent border-b border-hct-silver/60 text-hct-cloud placeholder:text-hct-silver focus:border-hct-silver outline-none py-3 font-body text-base font-light transition-colors disabled:opacity-50"
       />
       <ActionButton type="submit" disabled={submitting} className="shrink-0">
         {submitting ? "Sending…" : "Stay Connected"}

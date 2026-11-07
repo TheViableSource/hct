@@ -21,10 +21,7 @@ export default function MissionVisionValues() {
                 Mission
               </p>
               <p className="font-body font-light text-lg text-hct-mist leading-relaxed">
-                To produce extraordinary large-scale musical theater powered
-                entirely by community volunteers — creating immersive,
-                emotionally transformative experiences accessible to all of
-                Hillsboro.
+                To bring big musicals to life with local volunteers. To create shows that move people and welcome all of Hillsboro.
               </p>
             </div>
           </SectionReveal>
@@ -35,10 +32,7 @@ export default function MissionVisionValues() {
                 Vision
               </p>
               <p className="font-body font-light text-lg text-hct-mist leading-relaxed">
-                A Hillsboro where civic theater is a defining pillar of cultural
-                life — where residents of all backgrounds find belonging,
-                artistic expression, and collective wonder through the performing
-                arts.
+                A city where live theater is part of life. A place where people from all walks of life belong, create, and share the joy of a show.
               </p>
             </div>
           </SectionReveal>

@@ -14,7 +14,7 @@ export const BRAND = {
   wordmark: "HILLSBORO CIVIC THEATER",
   tagline: "Where Hillsboro Takes the Stage",
   mission:
-    "A volunteer-run, community-powered civic theater producing large-scale musicals with a full orchestra.",
+    "A theater run by local volunteers. We bring big musicals to the stage with a full live orchestra.",
   location: "Hillsboro · Oregon",
   email: "hello@hillsborocivictheater.org",
   social: {
@@ -23,7 +23,7 @@ export const BRAND = {
   },
 } as const;
 
-// Formspree endpoint — replace PLACEHOLDER with the real form ID once the
+// Formspree endpoint: replace PLACEHOLDER with the real form ID once the
 // account is set up (or set NEXT_PUBLIC_FORMSPREE_ID).
 export const FORMSPREE_ID =
   process.env.NEXT_PUBLIC_FORMSPREE_ID || "PLACEHOLDER";
@@ -40,92 +40,92 @@ export const NAV_LINKS: NavLink[] = [
 export const PILLARS: Pillar[] = [
   {
     icon: "clef",
-    title: "Full-Scale Productions",
-    body: "We produce large-scale musicals with full live orchestras. No half-measures. No corner-cutting. Every production earns its place on stage.",
+    title: "Big Shows, Live Music",
+    body: "We put on big musicals with full live orchestras. We give each show the time and care it needs to shine.",
   },
   {
     icon: "circle",
     title: "Volunteer Powered",
-    body: "Every person on stage, in the pit, and behind the curtain is a volunteer. From the orchestra to the box office, HCT is built and run by neighbors who give their time because they believe this city deserves it.",
+    body: "Everyone on stage, in the orchestra, and behind the scenes is a volunteer. Our neighbors give their time to build and run HCT. They believe Hillsboro deserves great theater.",
   },
   {
     icon: "curtain",
     title: "Open to Everyone",
-    body: "Whether you're a seasoned performer, a first-time audience member, or someone who just wants to help build something beautiful — there's a place for you here.",
+    body: "Have years on stage? Seeing your first show? Just want to help? There is a place for you here.",
   },
 ];
 
 export const COMMUNITY_ROLES: RoleCard[] = [
   {
     title: "Performers",
-    body: "For singers, actors, and dancers of all experience levels. We produce full-scale musicals that need entire communities of talent on stage. Auditions will be announced here first.",
+    body: "We welcome singers, actors, and dancers at every skill level. Our big musicals need lots of people on stage. Check here first for audition news.",
   },
   {
     title: "Musicians",
-    body: "We believe live orchestras are non-negotiable. Whether you play strings, brass, woodwinds, or percussion, your instrument has a home in our pit.",
+    body: "Live music is at the heart of our shows. Play strings, brass, woodwinds, or percussion? There is a place for your instrument in our orchestra.",
   },
   {
     title: "Directors & Choreographers",
-    body: "We're building a creative leadership team of directors, music directors, and choreographers who share our commitment to excellence and community.",
+    body: "Help lead our shows. We need directors, music directors, and dance leaders who care about great work and our community.",
   },
   {
     title: "Production & Crew",
-    body: "Set design, lighting, sound, costumes, props, stage management — the craft behind the curtain is as important as what happens on stage.",
+    body: "Build sets, run lights and sound, make costumes, or manage the stage. The work behind the curtain matters as much as the show.",
   },
   {
     title: "Volunteers",
-    body: "Front of house, event support, community outreach, administrative help — there are a hundred ways to contribute beyond the stage.",
+    body: "Welcome guests, help at events, spread the word, or help with office tasks. There are many ways to lend a hand.",
   },
   {
     title: "Audience Members",
-    body: "Simply showing up matters. Buying a ticket, bringing a friend, sharing the word — audiences make theater possible.",
+    body: "Buy a ticket. Bring a friend. Tell someone about HCT. Every person in the audience helps make theater possible.",
   },
 ];
 
 export const COMMUNITY_VALUES: ValueItem[] = [
   {
     title: "Belonging",
-    body: "HCT is a place where everyone is welcomed, respected, and valued — on stage, in the pit, backstage, and in the audience.",
+    body: "Everyone belongs at HCT. On stage, in the orchestra, behind the scenes, or in the audience, you matter.",
   },
   {
     title: "Growth",
-    body: "We believe in developing talent and capacity at every level. Whether you've performed for years or you're trying this for the first time, HCT is a place to grow.",
+    body: "There is always more to learn. Whether this is your first show or you have years of practice, HCT is a place to grow.",
   },
   {
     title: "Craft",
-    body: "We take the work seriously. We rehearse until it's right. We design until it's beautiful. We care about every detail.",
+    body: "We care about the work. We practice until it feels right. We build with care. Each detail matters.",
   },
   {
     title: "Joy",
-    body: "At the end of the day, this is theater. It should be joyful, electric, and alive. We never forget why we're here.",
+    body: "Theater should feel full of life. We love the work, the people, and the joy of a great show. That is why we are here.",
   },
 ];
 
 export const MISSION_VALUES: string[] = [
-  "Artistry without compromise",
-  "Community as the foundation",
-  "Access and belonging for all",
-  "Craftsmanship in every detail",
-  "Emotional intelligence in everything we do",
+  "Great art, made with care",
+  "Our community comes first",
+  "A place for everyone",
+  "Care in every detail",
+  "Kindness in all we do",
 ];
 
 export const MILESTONES: Milestone[] = [
   {
-    phase: "Founding Phase (Now)",
-    body: "Establishing the organization, building our founding sponsor and volunteer community, laying the legal and operational foundation.",
+    phase: "Getting Started (Now)",
+    body: "We are setting up HCT and doing the legal work. We are finding our first sponsors and volunteers.",
     active: true,
   },
   {
     phase: "Community Building",
-    body: "Recruiting founding performers, musicians, directors, and crew. Establishing partnerships with local venues and arts organizations.",
+    body: "We are bringing together our first cast, orchestra, directors, and crew. We are building ties with local venues and arts groups.",
   },
   {
     phase: "First Production",
-    body: "Our inaugural large-scale musical production, produced with a full live orchestra and community cast.",
+    body: "Our first big musical, with a full live orchestra and a local cast.",
   },
   {
-    phase: "HCT as Institution",
-    body: "An annual season of productions, youth programming, and a permanent home for Hillsboro's performing arts.",
+    phase: "A Lasting Home for HCT",
+    body: "Our goal: a season of shows each year, programs for young people, and a lasting home for the arts in Hillsboro.",
   },
 ];
 
@@ -133,32 +133,32 @@ export const DONATION_TIERS: DonationTier[] = [
   {
     name: "Supporter",
     amount: "Any Amount",
-    body: "Every gift, at every level, matters. If you believe in what we're building, your support is welcomed and celebrated.",
+    body: "Every gift matters. Give what works for you. Your support helps us build HCT.",
     cta: "Give a Gift",
   },
   {
     name: "Friend of HCT",
     amount: "$100–$499/year",
-    body: "Recognition in our inaugural season program · Early access to ticket announcements · Our sincere gratitude.",
+    body: "Your name in our first season program. Early news about tickets. Our heartfelt thanks.",
     cta: "Become a Friend",
   },
   {
     name: "Patron",
     amount: "$500–$999/year",
-    body: "Everything in Friend · Recognition at HCT events · Invitation to exclusive Patron events.",
+    body: "All Friend benefits. Thanks at HCT events. An invite to events just for Patrons.",
     cta: "Become a Patron",
   },
   {
     name: "Producer",
     amount: "$1,000–$4,999/year",
-    body: "Everything in Patron · Named recognition in production programs · Special acknowledgment at performances.",
+    body: "All Patron benefits. Your name in show programs. A special thank-you at shows.",
     cta: "Become a Producer",
   },
   {
     name: "Founding Benefactor",
     amount: "$5,000+/year",
-    body: "Your investment at this level helps establish HCT as a permanent institution. Named recognition in all founding materials · Private acknowledgment event · Your name as part of our history.",
-    cta: "Become a Founding Benefactor",
+    body: "Help give HCT a lasting home in our city. Your name in all founding materials. A private thank-you event. Your name as part of our history.",
+    cta: "Join Our Founders",
     featured: true,
     featuredLabel: "Founding Level",
   },
@@ -168,41 +168,41 @@ export const SPONSOR_TIERS: SponsorTier[] = [
   {
     tier: "Community Sponsor",
     investment: "$250–$999",
-    recognition: "Name in program, website listing, social recognition",
+    recognition: "Your name in the program, on our website, and on social media",
   },
   {
     tier: "Production Sponsor",
     investment: "$1,000–$4,999",
-    recognition: "Above + logo in program, verbal recognition at performances",
+    recognition: "All benefits above, plus your logo in the program and a spoken thank-you at shows",
   },
   {
     tier: "Season Sponsor",
     investment: "$5,000–$9,999",
     recognition:
-      "Above + prominent logo placement, event invitation, press recognition",
+      "All benefits above, plus a featured logo, an event invite, and thanks in press materials",
   },
   {
     tier: "Title Sponsor",
     investment: "$10,000–$24,999",
     recognition:
-      "Above + named association with inaugural production, prominent visibility across all materials",
+      "All benefits above, plus your name tied to our first show and featured in all materials",
   },
   {
     tier: "Founding Benefactor",
     investment: "$25,000+",
     recognition:
-      "Named legacy recognition, title sponsorship of inaugural season, permanent acknowledgment in HCT history",
+      "Your name honored as a founder. Title sponsor credit for our first season. A lasting place in HCT history.",
   },
 ];
 
 export const VOLUNTEER_NEEDS: string[] = [
   "Event Support",
   "Community Outreach",
-  "Social Media Assistance",
-  "Photography / Videography",
+  "Social Media Help",
+  "Photos / Video",
   "Graphic Design",
   "Grant Writing",
-  "Administrative Support",
-  "Fundraising & Development",
-  "Box Office / Front of House",
+  "Office Help",
+  "Fundraising",
+  "Ticket Sales / Guest Welcome",
 ];

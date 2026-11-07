@@ -9,6 +9,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 body {
@@ -24,7 +25,7 @@ body {
   color: #eef1f5;
 }
 
-/* Custom scrollbar — quiet, in keeping with the dark theme */
+/* Custom scrollbar : quiet, in keeping with the dark theme */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -62,7 +63,7 @@ body {
     );
   }
 
-  /* Faint starfield / celestial whisper — just a hint of depth */
+  /* Faint starfield / celestial whisper : just a hint of depth */
   .texture-celestial {
     background-image: radial-gradient(
         1px 1px at 20% 30%,
@@ -91,4 +92,63 @@ body {
 }
 .animate-fade-pulse {
   animation: hct-fade-pulse 2.6s ease-in-out infinite;
+}
+
+/* Clear keyboard navigation without changing the theater palette. */
+:focus-visible {
+  outline: 2px solid #eef1f5;
+  outline-offset: 5px;
+}
+
+main {
+  min-width: 0;
+}
+
+h1, h2, h3, p, a {
+  overflow-wrap: break-word;
+}
+
+[id] {
+  scroll-margin-top: 6rem;
+}
+
+.skip-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  color: #080f1c;
+  background: #eef1f5;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.hct-mobile-menu::backdrop {
+  background: #080f1c;
+}
+
+.hct-mobile-menu {
+  overscroll-behavior: contain;
+}
+
+@keyframes hct-section-enter {
+  from { transform: translateY(16px); }
+  to { transform: translateY(0); }
+}
+
+.hct-section-enter {
+  animation: hct-section-enter 0.6s ease-out var(--reveal-delay, 0s) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

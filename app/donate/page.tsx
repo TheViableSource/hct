@@ -9,7 +9,7 @@ import DonateForm from "@/components/forms/DonateForm";
 export const metadata: Metadata = {
   title: "Donate",
   description:
-    "Support Hillsboro Civic Theater. Founding donors are investing in the institution itself — before the first curtain rises. Your support makes every production possible.",
+    "Help build Hillsboro Civic Theater before our first show. Your gift supports the music, sets, costumes, and lights that bring each show to life.",
 };
 
 export default function DonatePage() {
@@ -24,7 +24,7 @@ export default function DonatePage() {
             Possible
           </>
         }
-        subtitle="Hillsboro Civic Theater is a community institution being built from love, vision, and the generosity of people who believe this city deserves something extraordinary. Your support makes every production possible."
+        subtitle="Help build a theater for Hillsboro. Your gift supports the people and work that bring each show to life. Together, we can make something special."
         actions={[{ label: "Donate Now", href: "#donate-form", variant: "primary" }]}
         height="tall"
         glow
@@ -41,8 +41,7 @@ export default function DonatePage() {
               Ready to give?
             </h3>
             <p className="font-body font-light text-lg text-hct-mist leading-relaxed max-w-xl">
-              Your donation goes directly to building HCT&apos;s founding
-              capacity.
+              Your gift helps HCT get ready for its first shows.
             </p>
           </SectionReveal>
           <SectionReveal delay={0.1}>

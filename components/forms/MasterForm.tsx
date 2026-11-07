@@ -47,7 +47,7 @@ export default function MasterForm() {
       intent: data.getAll("intent"),
       sponsorLevel: data.get("sponsorLevel"),
       about: data.get("about"),
-      _subject: "HCT — Get Involved inquiry",
+      _subject: "HCT: Get Involved inquiry",
       form: "get-involved",
     });
   }
@@ -103,13 +103,13 @@ export default function MasterForm() {
         disabled={submitting}
       />
       <SelectField
-        label="If you're interested in sponsorship, what level interests you most?"
+        label="Which sponsor level interests you?"
         name="sponsorLevel"
         options={SPONSOR_LEVELS}
         disabled={submitting}
       />
       <TextArea
-        label="Tell us about yourself / your interest"
+        label="Tell us about yourself and how you want to help"
         name="about"
         optional
         disabled={submitting}
@@ -119,9 +119,8 @@ export default function MasterForm() {
           {submitting ? "Sending…" : "Let's Talk"}
         </ActionButton>
       </div>
-      <p className="text-xs text-hct-silver/40 font-body leading-relaxed">
-        We&apos;ll be in touch soon. We take every inquiry seriously and respond
-        to all messages personally.
+      <p className="text-xs text-hct-silver font-body leading-relaxed">
+        We&apos;ll be in touch soon. Each message matters to us. We reply to every person.
       </p>
       {status === "error" && <FormError />}
     </form>

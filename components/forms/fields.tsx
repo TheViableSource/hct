@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import { motion } from "framer-motion";
 
 const inputBase =
-  "w-full bg-transparent border-b border-hct-silver/30 text-hct-cloud placeholder:text-hct-silver/30 focus:border-hct-silver outline-none py-3 font-body font-light transition-colors disabled:opacity-50";
+  "w-full bg-transparent border-b border-hct-silver/60 text-hct-cloud placeholder:text-hct-silver focus:border-hct-silver outline-none py-3 font-body text-base font-light transition-colors disabled:opacity-50";
 
 export function FieldLabel({
   children,
@@ -22,7 +22,7 @@ export function FieldLabel({
     >
       {children}
       {optional && (
-        <span className="text-hct-silver/40 ml-2 normal-case tracking-normal text-xs">
+        <span className="text-hct-silver ml-2 normal-case tracking-normal text-xs">
           (optional)
         </span>
       )}
@@ -115,14 +115,14 @@ export function CheckboxGroup({
         {options.map((opt) => (
           <label
             key={opt}
-            className="flex items-center gap-3 cursor-pointer group"
+            className="min-h-11 flex items-center gap-3 cursor-pointer group"
           >
             <input
               type="checkbox"
               name={name}
               value={opt}
               disabled={disabled}
-              className="appearance-none w-4 h-4 border border-hct-silver/40 rounded-sm checked:bg-hct-silver checked:border-hct-silver transition-colors shrink-0 cursor-pointer"
+              className="appearance-none w-4 h-4 border border-hct-silver/60 rounded-sm checked:bg-hct-silver checked:border-hct-silver transition-colors shrink-0 cursor-pointer"
             />
             <span className="font-body font-light text-sm text-hct-mist group-hover:text-hct-cloud transition-colors">
               {opt}
@@ -175,7 +175,7 @@ export function SelectField({
 
 export function FormError() {
   return (
-    <p className="text-hct-garnet text-sm font-body">
+    <p role="alert" className="text-rose-300 text-sm font-body">
       Something went wrong. Please try again, or email us directly.
     </p>
   );

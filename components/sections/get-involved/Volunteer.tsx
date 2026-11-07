@@ -17,12 +17,7 @@ export default function Volunteer() {
         <div className="grid grid-cols-1 lg:grid-cols-[5fr_7fr] gap-12 md:gap-20">
           <SectionReveal>
             <p className="font-body font-light text-lg text-hct-mist leading-relaxed">
-              HCT needs people in every area of operation — not just on stage.
-              From helping with events and outreach to supporting administrative
-              needs, there are meaningful volunteer opportunities for everyone. If
-              you have skills in marketing, graphic design, photography, event
-              planning, fundraising, or just enthusiasm to spare, we want to hear
-              from you.
+              HCT needs help on stage and behind the scenes. Plan events, spread the word, or help in the office. You can design, take photos, or raise funds. Bring your skills or just a wish to help. We want to hear from you.
             </p>
           </SectionReveal>
 

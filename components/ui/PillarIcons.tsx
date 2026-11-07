@@ -8,7 +8,7 @@ const COMMON = {
   strokeLinejoin: "round" as const,
 };
 
-// Treble clef — minimal, abstract
+// Treble clef : minimal, abstract
 function Clef() {
   return (
     <svg viewBox="0 0 48 48" width="48" height="48" {...COMMON} aria-hidden>
@@ -19,7 +19,7 @@ function Clef() {
   );
 }
 
-// People / circle — minimal community mark
+// People / circle : minimal community mark
 function Circle() {
   return (
     <svg viewBox="0 0 48 48" width="48" height="48" {...COMMON} aria-hidden>
@@ -30,7 +30,7 @@ function Circle() {
   );
 }
 
-// Parting stage curtain — abstract, not cliché
+// Parting stage curtain : abstract, not cliché
 function Curtain() {
   return (
     <svg viewBox="0 0 48 48" width="48" height="48" {...COMMON} aria-hidden>

@@ -14,11 +14,7 @@ export default function Sponsorship() {
             Be part of the beginning.
           </h2>
           <p className="font-body font-light text-lg text-hct-mist leading-relaxed">
-            Sponsoring HCT at this founding stage is an investment in
-            Hillsboro&apos;s cultural future. Your sponsorship will be recognized
-            in all founding materials, our inaugural season program, at
-            performances, and in the history of this institution. We welcome
-            sponsors at every level.
+            Help build a future for live theater in Hillsboro. We welcome sponsors at every level. We will thank our sponsors in founding materials, our first season program, at shows, and in HCT&apos;s history.
           </p>
         </SectionReveal>
 
@@ -32,10 +28,10 @@ export default function Sponsorship() {
                     Tier
                   </th>
                   <th className="font-body text-xs tracking-[0.2em] uppercase text-hct-silver/70 p-5">
-                    Investment
+                    Gift Amount
                   </th>
                   <th className="font-body text-xs tracking-[0.2em] uppercase text-hct-silver/70 p-5">
-                    Recognition
+                    How We Thank You
                   </th>
                 </tr>
               </thead>
@@ -85,8 +81,7 @@ export default function Sponsorship() {
 
         <SectionReveal delay={0.15} className="mt-12 max-w-3xl">
           <p className="font-body font-light text-lg text-hct-mist leading-relaxed mb-8">
-            Corporate and in-kind sponsorships are also available. Custom packages
-            can be designed to fit your organization&apos;s goals and budget.
+            Businesses can give funds, goods, or services. We can build a sponsor package to fit your goals and budget.
           </p>
           <Button href="#master-form" variant="ghost">
             Discuss a Sponsorship

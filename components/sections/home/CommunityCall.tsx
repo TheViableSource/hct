@@ -15,10 +15,7 @@ export default function CommunityCall() {
           Hillsboro will remember.
         </h2>
         <p className="font-body font-light text-lg text-hct-mist leading-relaxed max-w-lg mt-8">
-          We are actively building our founding community — performers,
-          musicians, designers, builders, donors, and dreamers. The curtain
-          hasn&apos;t risen yet. But it will. And we want you in the room when it
-          does.
+          We need performers, musicians, designers, builders, donors, and dreamers to help us get started. Our first curtain is still ahead. We want you here when it rises.
         </p>
         <div className="flex flex-col sm:flex-row items-center gap-4 mt-12">
           <Button href="/get-involved" variant="primary">

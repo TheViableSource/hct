@@ -11,7 +11,7 @@ import MasterForm from "@/components/forms/MasterForm";
 export const metadata: Metadata = {
   title: "Get Involved",
   description:
-    "HCT is in its founding phase. The people who step forward now are the ones who will shape what this theater becomes. We're looking for sponsors, volunteers, performers, musicians, and partners of every kind.",
+    "Help shape HCT from the start. Join us as a sponsor, volunteer, performer, musician, or partner.",
 };
 
 export default function GetInvolvedPage() {
@@ -26,15 +26,15 @@ export default function GetInvolvedPage() {
             Be here before it does.
           </>
         }
-        subtitle="HCT is in its founding phase — and that means right now, at this moment, the people who step forward are the ones who will shape what this theater becomes. We are looking for sponsors, volunteers, performers, musicians, and partners of every kind."
+        subtitle="HCT is just getting started. Help shape what comes next. We need sponsors, volunteers, performers, musicians, and partners of all kinds."
         actions={[
           {
-            label: "Express Your Interest",
+            label: "Tell Us You’re Interested",
             href: "#master-form",
             variant: "primary",
           },
           {
-            label: "View Sponsorship Tiers",
+            label: "See Sponsor Levels",
             href: "#sponsorship",
             variant: "ghost",
           },

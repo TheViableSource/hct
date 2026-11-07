@@ -9,7 +9,7 @@ export default function AtmosphericCard({
 }) {
   return (
     <div
-      className={`bg-hct-ink/60 border border-hct-silver/10 p-8 rounded-sm hover:border-hct-silver/30 transition-all duration-300 ${className}`}
+      className={`bg-hct-ink/60 border border-hct-silver/10 p-6 sm:p-8 min-w-0 rounded-sm hover:border-hct-silver/30 transition-colors duration-300 ${className}`}
     >
       {children}
     </div>

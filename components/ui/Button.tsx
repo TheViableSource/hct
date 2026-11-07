@@ -12,7 +12,7 @@ const VARIANTS: Record<ButtonVariant, string> = {
 };
 
 const BASE =
-  "inline-flex items-center justify-center text-center font-body text-sm tracking-widest uppercase leading-snug rounded-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed";
+  "inline-flex min-h-11 max-w-full items-center justify-center text-center font-body text-sm tracking-wider uppercase leading-snug rounded-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed";
 
 type CommonProps = {
   children: ReactNode;

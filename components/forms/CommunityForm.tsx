@@ -32,7 +32,7 @@ export default function CommunityForm() {
       cityZip: data.get("cityZip"),
       involvement: data.getAll("involvement"),
       about: data.get("about"),
-      _subject: "HCT — Community interest submission",
+      _subject: "HCT: Community interest submission",
       form: "community",
     });
   }

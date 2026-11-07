@@ -10,7 +10,7 @@ import CommunityForm from "@/components/forms/CommunityForm";
 export const metadata: Metadata = {
   title: "Community",
   description:
-    "HCT is built by the people of Hillsboro — and it exists to serve them. On stage, in the pit, behind the scenes, or in the audience, you are what makes this real.",
+    "The people of Hillsboro are building HCT. Find your place on stage, in the orchestra, behind the scenes, or in the audience.",
 };
 
 export default function CommunityPage() {
@@ -25,7 +25,7 @@ export default function CommunityPage() {
             Belongs to You
           </>
         }
-        subtitle="HCT is built by the people of Hillsboro — and it exists to serve them. Whether you're on stage, in the orchestra pit, behind the scenes, or in the audience, you are what makes this real."
+        subtitle="The people of Hillsboro are building HCT for everyone to enjoy. On stage, in the orchestra, behind the scenes, or in the audience, you help bring it to life."
         height="short"
       />
       <RoleCards />
@@ -40,8 +40,8 @@ export default function CommunityPage() {
               Tell us about yourself.
             </h3>
             <p className="font-body font-light text-lg text-hct-mist leading-relaxed max-w-xl">
-              We&apos;re building our founding community right now. Fill out the
-              form below and we&apos;ll be in touch as things take shape.
+              We&apos;re bringing our first team together. Fill out the form
+              below. We&apos;ll be in touch as our plans take shape.
             </p>
           </SectionReveal>
           <SectionReveal delay={0.1}>

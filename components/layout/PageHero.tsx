@@ -8,7 +8,7 @@ import DecorativeRule from "@/components/ui/DecorativeRule";
 import type { ButtonConfig } from "@/lib/types";
 
 const HEIGHTS = {
-  full: "min-h-screen",
+  full: "min-h-screen min-h-[100svh]",
   tall: "min-h-[70vh]",
   short: "min-h-[60vh]",
 };
@@ -48,9 +48,9 @@ export default function PageHero({
 
       <motion.div
         variants={container}
-        initial="hidden"
+        initial={false}
         animate="show"
-        className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 text-center flex flex-col items-center pt-24 pb-16"
+        className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-10 text-center flex flex-col items-center pt-32 pb-16 sm:pt-36 sm:pb-20"
       >
         {label && (
           <motion.div variants={item} className="flex flex-col items-center">
@@ -61,7 +61,7 @@ export default function PageHero({
 
         <motion.h1
           variants={item}
-          className="font-display font-light tracking-tight leading-[1.05] text-hct-cloud text-5xl md:text-7xl max-w-4xl"
+          className="font-display font-light tracking-tight leading-[1.05] text-hct-cloud text-4xl sm:text-5xl md:text-7xl text-balance max-w-4xl"
         >
           {title}
         </motion.h1>
@@ -78,7 +78,7 @@ export default function PageHero({
         {actions.length > 0 && (
           <motion.div
             variants={item}
-            className="flex flex-col sm:flex-row items-center gap-4 mt-10"
+            className="flex flex-col sm:flex-row flex-wrap justify-center items-stretch sm:items-center gap-4 mt-10 w-full sm:w-auto"
           >
             {actions.map((a) => (
               <Button key={a.label} href={a.href} variant={a.variant}>
@@ -91,7 +91,7 @@ export default function PageHero({
         {caption && (
           <motion.p
             variants={item}
-            className="text-xs text-hct-silver/50 font-body tracking-wide mt-6 max-w-md"
+            className="text-sm text-hct-silver font-body tracking-wide mt-6 max-w-md"
           >
             {caption}
           </motion.p>

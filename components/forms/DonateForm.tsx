@@ -19,7 +19,7 @@ export default function DonateForm() {
       email: data.get("email"),
       amount: amount === "Other" ? data.get("customAmount") : amount,
       message: data.get("message"),
-      _subject: "HCT — Donation intent",
+      _subject: "HCT: Donation intent",
       form: "donate",
     });
   }
@@ -55,10 +55,10 @@ export default function DonateForm() {
             return (
               <label
                 key={amt}
-                className={`cursor-pointer font-body text-sm tracking-wider px-6 py-3 rounded-sm border transition-colors ${
+                className={`cursor-pointer font-body text-sm tracking-wider px-6 py-3 rounded-sm border transition-colors focus-within:outline focus-within:outline-2 focus-within:outline-offset-4 focus-within:outline-hct-spotlight ${
                   selected
                     ? "bg-hct-silver text-hct-velvet border-hct-silver"
-                    : "border-hct-silver/30 text-hct-silver hover:border-hct-silver/60"
+                    : "border-hct-silver/60 text-hct-silver hover:border-hct-silver/60"
                 }`}
               >
                 <input
@@ -79,7 +79,7 @@ export default function DonateForm() {
 
       {amount === "Other" && (
         <TextField
-          label="Custom Amount"
+          label="Your Gift Amount"
           name="customAmount"
           disabled={submitting}
           placeholder="$"
@@ -95,15 +95,14 @@ export default function DonateForm() {
 
       <div className="pt-2">
         <ActionButton type="submit" variant="donate" disabled={submitting}>
-          {submitting ? "Sending…" : "Make My Donation"}
+          {submitting ? "Sending…" : "Send My Gift Details"}
         </ActionButton>
       </div>
 
-      <p className="text-sm text-hct-mist/60 font-body font-light leading-relaxed">
-        HCT will contact you to process your donation securely. We do not store
-        payment information.
+      <p className="text-sm text-hct-mist font-body font-light leading-relaxed">
+        HCT will contact you to safely complete your gift. We do not store payment details.
       </p>
-      <p className="text-xs text-hct-silver/40 font-body">
+      <p className="text-xs text-hct-silver font-body">
         Hillsboro Civic Theater is a registered 501(c)(3) nonprofit. EIN:
         PENDING.
       </p>

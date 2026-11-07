@@ -17,25 +17,16 @@ export default function FoundersNote() {
           className="space-y-6 font-body font-light text-lg text-hct-mist leading-relaxed"
         >
           <p>
-            Hillsboro Civic Theater is in its earliest chapter. We don&apos;t yet
-            have a venue of our own. We haven&apos;t yet cast our first
-            production. We haven&apos;t yet raised our curtain.
+            Hillsboro Civic Theater is just getting started. We don&apos;t have a venue of our own yet. We haven&apos;t cast our first show or raised our first curtain.
           </p>
           <p>
-            But we have something more important right now: vision, commitment,
-            and a growing community of people who believe this is worth building.
+            We have a clear goal and people who care. More people are joining us because they believe this is worth building.
           </p>
           <p>
-            We are actively seeking founding sponsors at every level — from
-            individual supporters to corporate partners — who want to be part of
-            this institution from its very first day. We are recruiting the
-            performers, musicians, directors, and crew who will populate our stage
-            and pit. We are establishing the volunteer network and community
-            partnerships that will sustain HCT for decades.
+            We need founding sponsors at every level, from neighbors to local businesses. We need performers, musicians, directors, and crew for our first shows. We are building a team of volunteers and local partners to help HCT thrive for years to come.
           </p>
           <p className="font-accent italic text-2xl text-hct-spotlight">
-            This is the moment when everything is possible. And we&apos;re inviting
-            you into it.
+            There is so much ahead of us. Come help shape it.
           </p>
         </SectionReveal>
       </div>

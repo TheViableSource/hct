@@ -13,9 +13,7 @@ export default function RoleCards() {
             There&apos;s a role for everyone.
           </h2>
           <p className="font-body font-light text-lg text-hct-mist leading-relaxed">
-            HCT is an all-volunteer theater. Every role below is a way to give
-            your time — and become part of something Hillsboro is building
-            together.
+            Volunteers fill every role at HCT. Give your time and help build a theater for Hillsboro.
           </p>
         </SectionReveal>
 
@@ -33,7 +31,7 @@ export default function RoleCards() {
                   href="/get-involved"
                   className="font-body text-sm tracking-wider uppercase text-hct-silver hover:text-hct-cloud transition-colors mt-6 inline-block"
                 >
-                  Express Interest →
+                  Get Involved →
                 </Link>
               </div>
             </SectionReveal>

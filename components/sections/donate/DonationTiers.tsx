@@ -18,7 +18,7 @@ export default function DonationTiers() {
           </h2>
         </SectionReveal>
 
-        {/* Four standard tiers — balanced row of 4 on desktop, 2×2 on tablet */}
+        {/* Four standard tiers: balanced row of 4 on desktop, 2×2 on tablet */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {standard.map((tier, i) => (
             <SectionReveal key={tier.name} delay={(i % 4) * 0.08}>
@@ -46,7 +46,7 @@ export default function DonationTiers() {
           ))}
         </div>
 
-        {/* Featured tier — full-width banner with a horizontal internal layout */}
+        {/* Featured tier: full-width banner with a horizontal internal layout */}
         {featured && (
           <SectionReveal delay={0.1} className="mt-6">
             <div className="relative bg-hct-ink border-2 border-hct-silver/40 rounded-sm p-8 md:p-12">
