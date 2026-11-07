@@ -28,6 +28,7 @@ const cormorantInfant = Cormorant_Infant({
 });
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/" },
   metadataBase: new URL(SITE_URL),
   title: {
     default: "Hillsboro Civic Theater",

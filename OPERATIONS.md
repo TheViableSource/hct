@@ -9,64 +9,121 @@ IDs are rejected. Sponsorship/donation interest on the inquiry form is only an
 inquiry, never a payment or pledge. Existing nonprofit and EIN claims were not
 verified or changed by this work.
 
-Node **22.23 or newer** is required for built-in `node:sqlite`. The local runtime
-is 22.23; the reported Plesk runtime is 25.9. SQLite is still experimental in these
-Node versions. Verify on the actual production runtime before release. There is
-no native addon or additional dependency.
+## Verified server architecture (2026-11-07)
 
-The verified app root is `/var/www/vhosts/tvssites.com/hctj.tvssites.com`.
-The proposed private path is `/var/www/vhosts/tvssites.com/private/hct-submissions`.
-This is a proposal, NOT a directory created by this change. An authorized admin
-must verify the parent, ownership, access, symlinks, available disk space, and
-that no web vhost/alias serves it. Obtain required approval before creating it
-or changing server permissions/configuration. Never guess a subscription home.
+Node **22.23 or newer** is required for built-in `node:sqlite`. The canonical
+Plesk application uses Node **25.9**, application user **admi**, and `server.js`
+with Passenger. The local development runtime is 22.23. SQLite is experimental
+in these Node versions. There is no native addon or additional dependency.
 
-The directory must be outside **all** public, application, deployment and Git
-roots. Runtime checks reject the current application tree, symlink path
-components, unsafe writable parents, and target ownership/mode errors, but
-cannot discover every Plesk vhost alias. The operator must check those.
+- Canonical origin: `https://hillsborocivictheatre.com`.
+- Application root: `/var/www/vhosts/tvssites.com/hillsborocivictheatre.com`.
+- Plesk document root: `/hillsborocivictheatre.com/public`, resolving to
+  `/var/www/vhosts/tvssites.com/hillsborocivictheatre.com/public`.
+- Separate Plesk Git clone: `https://github.com/TheViableSource/hct.git`, branch
+  `main`, deployed to the canonical application root. Source deployment is
+  automatic when pulled; no post-deploy actions are configured. Build and
+  Passenger restart are separate required steps.
+- Old application root `/var/www/vhosts/tvssites.com/hctj.tvssites.com` remains
+  untouched as a rollback resource until the canonical application is verified.
+- Default Plesk public assets (`css`, `favicon`, `img`, `index`, and `test`) were
+  moved recoverably to
+  `/var/www/vhosts/tvssites.com/private/hct-plesk-placeholder-20261107`.
 
-## Approved server setup
+The approved private layout has been created:
 
-1. Use existing authenticated Plesk administration. Verify the Node runtime,
-   application root, startup file `server.js`, public document root, and app
-   user `admi`. Run commands below as the application user from the app root,
-   using Plesk's selected Node binary rather than an older system binary.
-2. Ensure the verified private parent already exists and can be used by this
-   application. The init command only creates the final directory, with 0700.
-   It never recursively creates parents or repairs permissions. Init is idempotent
-   for the known version-1 schema. Only a completely empty version-0 database
-   may be initialized; unknown versions or unrelated schemas fail unchanged. Existing
-   directory must be 0700 and owned by the process user; files must be 0600,
-   owned by that user, ordinary files, not symlinks or hardlinks. Incorrect
-   permissions cause failure rather than silent changes.
-3. Configure these **server-only runtime** environment variables in Plesk:
+| Path under `/var/www/vhosts/tvssites.com/private` | Mode | Purpose |
+| --- | --- | --- |
+| Parent `private` directory | 0700 | Private administration area |
+| `hct-submissions` | 0700 | Live SQLite directory |
+| `hct-submissions/submissions.sqlite` | 0600 | Initialized private store |
+| `hct-backups` | 0700 | Consistent snapshots, separate from live data |
+| `hct-exports` | 0700 | Private review and newsletter CSV exports |
+| `hct-backups/hct-initial-20261107.sqlite` | 0600 | Initial consistent backup |
 
-   - `HCT_FORM_DATA_DIR=/var/www/vhosts/tvssites.com/private/hct-submissions`
-     only after the path is verified and approved.
-   - `HCT_FORM_ORIGINS=https://hillsborocivictheatre.com,https://hctj.tvssites.com`
-     only for approved served origins. No trailing slashes, paths or wildcards.
-     The www host should redirect to the canonical apex, not need a third entry.
+The initial store integrity check passed with **0 rows**. These are setup
+observations, not a claim that the canonical build or live release passed.
+At this documentation checkpoint the canonical build was running; build
+completion, restart, and live verification remain separate release checks.
+Do not recreate or reinitialize the production store, overwrite the initial
+backup, or insert real personal information for testing.
 
-   Never prefix these with NEXT_PUBLIC_. The CLI also needs these environment
-   variables in its shell; Plesk web-app variables may not be inherited by its
-   terminal. Do not paste any environment dump into a report.
-4. Run `npm run forms:admin -- diagnose`, then
-   `npm run forms:admin -- init`, then `npm run forms:admin -- check`.
-   Diagnose prints only cwd, Node version, resolved configured path and safe
-   ownership/permission/readiness booleans. Check/counts print aggregate counts
-   and integrity status, never individual submissions.
-5. Install existing locked dependencies if needed, run `npm run typecheck`,
-   `npm test`, `npm run build`, then `npm run test:production`. The compiled smoke
-   test uses a free OS-selected loopback port and a temporary synthetic store. Deploy only with separate release approval.
-   Git source deployment does not build or restart Passenger. Restart every
-   vhost/Passenger instance serving this application after build/config updates.
-6. Verify the actual runtime with synthetic `example.invalid` input using a
-   separate private test store, never a real person's data. Test success,
-   consent false/true, disabled donation, bad origin, and a repeated request.
-   Verify no form data is in public/build output. Then verify production config
-   with diagnose/check without reading real submissions. Browser UI QA remains
-   a release step; automated Node tests do not replace it.
+The private directories are outside public/application/deployment/Git roots.
+Keep them there. Runtime checks reject the current application tree, symlink
+path components, unsafe writable parents, and target ownership/mode errors,
+but cannot discover every Plesk vhost alias. Never expose private paths through
+a new vhost, alias, public symlink or download route. Files must belong to the
+application user, be ordinary files rather than symlinks/hardlinks, and have
+0600 permissions. The directory must be 0700. Incorrect permissions fail
+closed; the application does not silently repair them.
+
+## Runtime configuration and release checks
+
+The canonical application's server-only Plesk runtime settings are:
+
+```
+HCT_FORM_DATA_DIR=/var/www/vhosts/tvssites.com/private/hct-submissions
+HCT_FORM_ORIGINS=https://hillsborocivictheatre.com
+```
+
+The origin allowlist is **canonical only**. Do not add the old staging host or
+www host. No trailing slash, path, wildcard, or NEXT_PUBLIC_ prefix belongs in
+these values. Restart the canonical Passenger application after approved
+runtime configuration changes.
+
+Use existing authenticated Plesk administration as `admi`, from the canonical
+application root. Check the private store with the explicit CLI wrapper below.
+`diagnose` prints only cwd, Node version, configured path and safe
+ownership/permission/readiness booleans. `check` and `counts` show integrity and
+aggregate counts without individual submissions.
+
+For an authorized release, validate the locked dependencies, run typecheck and
+synthetic tests, complete the production build, then run the compiled smoke
+test against its isolated temporary store. Source deployment alone does not
+build or restart Passenger. Test scripts use `example.invalid` entries, a free
+OS-selected loopback port and isolated temporary storage; never point test data
+at the production store. Verify the canonical application after restart,
+including public routes, disabled donation controls and form UI. Use private
+admin diagnostics/counts rather than reading real submissions. Browser QA is
+not replaced by automated tests.
+
+## Plesk command console: explicit private-store wrapper
+
+**Verified behavior:** the Plesk Node command console does not inherit the
+application UI's environment variables. A direct diagnostic returned
+`configuredPath: null`. Use the wrapper below, which sets only the non-secret
+private storage path within the command's Node process. It does not change the
+web application's configuration. No environment dump is needed.
+
+Full terminal command, from the canonical application root:
+
+```sh
+npm exec --offline -- node --input-type=module -e 'process.env.HCT_FORM_DATA_DIR="/var/www/vhosts/tvssites.com/private/hct-submissions";process.argv=["node","scripts/forms-admin.mjs","check"];await import("./scripts/forms-admin.mjs")'
+```
+
+In Plesk's Node command field, the UI already supplies `npm`. Enter the same
+command **starting with `exec`**, not `npm exec`:
+
+```sh
+exec --offline -- node --input-type=module -e 'process.env.HCT_FORM_DATA_DIR="/var/www/vhosts/tvssites.com/private/hct-submissions";process.argv=["node","scripts/forms-admin.mjs","check"];await import("./scripts/forms-admin.mjs")'
+```
+
+For `diagnose`, replace the `"check"` argument with `"diagnose"`. For counts:
+
+```sh
+exec --offline -- node --input-type=module -e 'process.env.HCT_FORM_DATA_DIR="/var/www/vhosts/tvssites.com/private/hct-submissions";process.argv=["node","scripts/forms-admin.mjs","counts"];await import("./scripts/forms-admin.mjs")'
+```
+
+The subsequent export/backup examples use this **Plesk command-field** format.
+Add the `npm` prefix only when running them in a normal terminal. Use a fresh,
+meaningful timestamp in every output filename. Output files are created
+exclusively; existing files are never overwritten.
+
+`init` is a provisioning command, not a recurring maintenance step. The live
+store is already initialized. For a separately authorized new empty store,
+init accepts only an empty version-0 database or the known version-1 schema;
+unknown versions and unrelated schemas fail unchanged. Do not run it to repair
+or replace an existing production database.
 
 ## How intake behaves
 
@@ -104,13 +161,13 @@ Do not enable request-body logging in reverse proxies, APM or diagnostics.
 
 ## Review and download using existing authenticated Plesk
 
-Run `npm run forms:admin -- counts` for aggregate status.
-For private review create a fresh CSV, using a separately approved 0700 directory
-owned by the application user outside all served/deployed trees:
+Use the counts wrapper above for aggregate status. Create approved private
+exports in the existing owner-only sibling `hct-exports` directory. Replace
+`YYYYMMDD-HHMMSS` with a fresh timestamp:
 
-```
-npm run forms:admin -- export /verified/private-export-dir/review-YYYYMMDD.csv
-npm run forms:admin -- export-newsletter /verified/private-export-dir/newsletter-YYYYMMDD.csv
+```sh
+exec --offline -- node --input-type=module -e 'process.env.HCT_FORM_DATA_DIR="/var/www/vhosts/tvssites.com/private/hct-submissions";process.argv=["node","scripts/forms-admin.mjs","export","/var/www/vhosts/tvssites.com/private/hct-exports/review-YYYYMMDD-HHMMSS.csv"];await import("./scripts/forms-admin.mjs")'
+exec --offline -- node --input-type=module -e 'process.env.HCT_FORM_DATA_DIR="/var/www/vhosts/tvssites.com/private/hct-submissions";process.argv=["node","scripts/forms-admin.mjs","export-newsletter","/var/www/vhosts/tvssites.com/private/hct-exports/newsletter-YYYYMMDD-HHMMSS.csv"];await import("./scripts/forms-admin.mjs")'
 ```
 
 These files are created exclusively as 0600 and never overwrite existing files.
@@ -133,8 +190,12 @@ from them. 0700/0600 do not protect against that user or privileged admins.
 
 Create a consistent SQLite snapshot, even if other processes are submitting:
 
-```
-npm run forms:admin -- backup /verified/private-backup-dir/hct-YYYYMMDD.sqlite
+Use the existing owner-only sibling `hct-backups` directory, never the live
+`hct-submissions` directory. Replace `YYYYMMDD-HHMMSS` with a fresh timestamp;
+do not overwrite `hct-initial-20261107.sqlite`.
+
+```sh
+exec --offline -- node --input-type=module -e 'process.env.HCT_FORM_DATA_DIR="/var/www/vhosts/tvssites.com/private/hct-submissions";process.argv=["node","scripts/forms-admin.mjs","backup","/var/www/vhosts/tvssites.com/private/hct-backups/hct-YYYYMMDD-HHMMSS.sqlite"];await import("./scripts/forms-admin.mjs")'
 ```
 
 The approved backup directory must be 0700 and owned by the app user. The file
@@ -149,7 +210,8 @@ Restore only with approved admin access and a planned maintenance window:
 2. Choose a fresh approved private 0700 restore directory owned by the app user.
    Do not initialize a blank store there. Place the verified snapshot there as
    `submissions.sqlite`, owner app user, mode 0600. Never overwrite a live store.
-3. Point the CLI's HCT_FORM_DATA_DIR at the restore directory and run `check`.
+3. Set the wrapper's explicit HCT_FORM_DATA_DIR to the approved restore
+   directory and run `check`.
    Verify expected aggregate counts and schema version. Do not proceed on errors.
 4. Change the approved Plesk runtime setting to that restore directory, restart
    all instances, and confirm diagnose/check and form availability. Note that
@@ -173,6 +235,11 @@ code rollback. On config/permissions/disk/lock errors forms fail closed with a
 plain retry message. Do not loosen storage permissions or fall back to public
 files or external services. Check config, filesystem space, locks and aggregate
 limits privately. No PII should be pasted into logs or support reports.
+
+The preserved old application root is a rollback resource, not proof that its
+forms meet the current requirements. Leave it untouched until canonical
+verification is complete. Do not redirect traffic back without checking the
+form behavior and obtaining approval for the rollback.
 
 The prior commit `deb3dc3` used a placeholder external Formspree form. Rolling
 back to it would re-enable that client path and the donation intent UI. Prefer

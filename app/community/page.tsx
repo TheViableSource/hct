@@ -8,6 +8,7 @@ import SectionLabel from "@/components/ui/SectionLabel";
 import CommunityForm from "@/components/forms/CommunityForm";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/community" },
   title: "Community",
   description:
     "The people of Hillsboro are building HCT. Find your place on stage, in the orchestra, behind the scenes, or in the audience.",

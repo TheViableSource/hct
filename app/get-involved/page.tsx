@@ -9,6 +9,7 @@ import SectionLabel from "@/components/ui/SectionLabel";
 import MasterForm from "@/components/forms/MasterForm";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/get-involved" },
   title: "Get Involved",
   description:
     "Help shape HCT from the start. Join us as a sponsor, volunteer, performer, musician, or partner.",

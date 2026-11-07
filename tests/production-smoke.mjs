@@ -28,10 +28,22 @@ try {
  assert.equal((await post(input,'https://other.example.invalid')).status,403);
  assert.equal((await fetch(origin+'/api/forms')).status,405);
  const {db}=openStore({directory});assert.equal(db.prepare('SELECT count(*) n FROM submissions').get().n,1);db.close();
+ for (const route of ['/', '/about', '/community', '/donate', '/get-involved']) {
+   const response = await fetch(origin + route);
+   assert.equal(response.status, 200, `HTML route ${route}`);
+   const html = await response.text();
+   const canonicalLinks = [...html.matchAll(/<link\b[^>]*>/gi)]
+     .map(match => match[0])
+     .filter(tag => /\brel=["']canonical["']/i.test(tag));
+   assert.equal(canonicalLinks.length, 1, `One canonical link for ${route}`);
+   const href = canonicalLinks[0].match(/\bhref=["']([^"']*)["']/i)?.[1];
+   const expected = 'https://hillsborocivictheatre.com' + (route === '/' ? '' : route);
+   assert.equal(href, expected, `Exact canonical href for ${route}`);
+ }
  const donate=await (await fetch(origin+'/donate')).text();assert.ok(donate.includes('Online Giving Coming Soon'));assert.ok(!donate.includes('Send My Gift Details'));
  const sitemap=await (await fetch(origin+'/sitemap.xml')).text();assert.ok(sitemap.includes('https://hillsborocivictheatre.com'));assert.ok(!sitemap.includes('hillsborocivictheater.org'));
  const robots=await (await fetch(origin+'/robots.txt')).text();assert.ok(robots.includes('https://hillsborocivictheatre.com/sitemap.xml'));
- console.log('Compiled production route, retry, consent, donation rejection, wrong-origin rejection, disabled donation UI and canonical routes passed.');
+ console.log('Compiled production route, retry, consent, donation rejection, wrong-origin rejection, disabled donation UI, canonical routes and all five exact HTML canonical links passed.');
 } finally {
  if(server.exitCode===null){server.kill('SIGTERM');await once(server,'exit');}
  fs.rmSync(directory,{recursive:true,force:true});

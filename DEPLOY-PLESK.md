@@ -1,71 +1,93 @@
 # Deploying HCT to Plesk (Node.js / Passenger)
 
-Plesk runs Node apps through Phusion Passenger, which launches a single
-**startup file**. This repo includes `server.js` for exactly that — it boots the
-production Next.js build and listens on the port Passenger provides.
+Plesk's Passenger launches `server.js`, which serves the production Next.js
+build. A source pull, build and application restart are distinct operations.
 
-## Prerequisites
+## Verified canonical architecture (2026-11-07)
 
-- Plesk with the **Node.js** extension installed.
-- **Node.js 22.23+** selected for the domain (required for built-in SQLite).
-- The site files in the domain (via Git pull or upload — see step 1).
+| Setting | Value |
+| --- | --- |
+| Canonical origin | `https://hillsborocivictheatre.com` |
+| Node.js | 25.9 |
+| Application user | `admi` |
+| Application mode | `production` |
+| Application root | `/var/www/vhosts/tvssites.com/hillsborocivictheatre.com` |
+| Plesk document root | `/hillsborocivictheatre.com/public` |
+| Startup file | `server.js` |
+| Separate Git clone | `https://github.com/TheViableSource/hct.git` |
+| Git branch | `main` |
+| Deployment target | Canonical application root |
+| Deployment mode | Automatic source deployment when pulled |
+| Post-deploy actions | None |
 
-## Steps
+The old `/var/www/vhosts/tvssites.com/hctj.tvssites.com` application is untouched
+as a rollback resource until the canonical application is verified. Do not
+reuse its application root for the canonical deployment or assume its forms
+are safe to re-enable. Default Plesk public placeholder assets were moved
+recoverably to
+`/var/www/vhosts/tvssites.com/private/hct-plesk-placeholder-20261107`.
 
-### 1. Get the code onto the server
-Either:
-- **Git (recommended):** In Plesk → domain → **Git**, clone
-  `git@github.com:TheViableSource/hct.git` (or the HTTPS URL) into the domain.
-  Enable "Deploy automatically" for push-to-deploy if you like.
-- **Upload:** Zip the repo (excluding `node_modules` and `.next`) and upload it
-  to the domain's directory.
+At this documentation checkpoint the canonical build was running. Build
+completion, restart and live verification have not been claimed here.
 
-### 2. Enable Node.js for the domain
-Plesk → domain → **Node.js**, then set:
+## Private forms configuration
 
-| Field | Value |
-|-------|-------|
-| **Node.js version** | 22.23+ (or newer LTS) |
-| **Application Mode** | `production` |
-| **Application Root** | the folder containing `package.json` (e.g. `/httpdocs`) |
-| **Application Startup File** | `server.js` |
-| **Document Root** | `/httpdocs/public` (or leave the domain default) |
+See [OPERATIONS.md](OPERATIONS.md) for the verified private layout, diagnostic
+wrappers, private exports, consistent backups and restore/rollback procedure.
+The approved production store is **already initialized**, integrity checked
+with 0 rows at setup, with an initial consistent private backup. Do not recreate
+it or use real submissions for testing.
 
-### 3. Set up private form storage
+Set the canonical app's server-only runtime variables to:
 
-Follow [OPERATIONS.md](OPERATIONS.md) first. The server-only runtime settings are
-`HCT_FORM_DATA_DIR` and `HCT_FORM_ORIGINS`. There is no Formspree connection.
-Initialize the private SQLite store as the application user before enabling forms.
-Do not place data in the application root, public root, Git, or deployment tree.
-Restart every Passenger app instance after changing runtime settings.
+```
+HCT_FORM_DATA_DIR=/var/www/vhosts/tvssites.com/private/hct-submissions
+HCT_FORM_ORIGINS=https://hillsborocivictheatre.com
+```
 
-### 4. Install dependencies
-Click **NPM Install** in the Node.js panel (runs `npm install`).
+The origin allowlist is canonical only. There is no Formspree, mailing service,
+payment processing or public admin endpoint. The live DB, exports and backups
+are in separate owner-only private directories outside the deployment tree.
 
-### 5. Build the production bundle
-In the Node.js panel, use **Run Script** → enter `build` (runs `npm run build`).
-This creates the `.next` production build. Wait for it to finish.
+**Plesk's Node command console does not inherit these application UI variables.**
+Use the explicit Node-process wrapper in OPERATIONS.md for admin commands. The
+Plesk command field supplies the `npm` prefix; enter commands beginning with
+`exec --offline -- node ...`, not `npm exec ...`. Runtime settings still need to
+be set independently for the actual web application.
 
-### 6. Start it
-Click **Restart App** (or **Enable Node.js**). Passenger launches `server.js`,
-which serves the built site. Visit the domain to confirm.
+## Authorized redeployment
 
-## Redeploying after changes
+1. Confirm the intended release is on GitHub `main`, then pull the canonical
+   Plesk Git repository. Its configured source deployment copies the checkout
+   to the canonical application root. It does not build or restart anything.
+2. Install locked dependencies when required. Node 22.23+ is the minimum for
+   built-in SQLite; the selected production runtime is 25.9.
+3. Run the applicable typecheck and synthetic test suite. Test data must use an
+   isolated temporary store, never the production database.
+4. Run `build` through Plesk's npm controls. Wait for successful completion and
+   inspect the result. Do not run concurrent builds in the same app root.
+5. Restart the canonical application through Plesk's Node panel. Passenger
+   launches `server.js` against the completed `.next` build and runtime config.
+6. Verify canonical public pages, robots/sitemap domain, disabled giving
+   controls, form UI and configuration. Use the private diagnostic/check/counts
+   wrappers without reading real submissions. Keep the old root untouched
+   until the canonical release is verified.
 
-1. `git pull` (or re-upload changed files).
-2. **NPM Install** (only if dependencies changed).
-3. **Run Script → `build`**.
-4. **Restart App**.
+## Troubleshooting
 
-## Notes & troubleshooting
-
-- **`.next` and `node_modules` are not in git** (by design). They're generated on
-  the server by steps 4–5. Don't upload them.
-- **500 on first hit after restart:** Next needs a second to warm up after
-  Passenger starts the process; reload once.
-- **App won't start / "startup file not found":** confirm Application Root points
-  at the folder with `package.json` and Startup File is exactly `server.js`.
-- **Old content after deploy:** you forgot to re-run **build**, or Passenger is
-  serving a cached process — hit **Restart App**.
-- **Forms return unavailable:** use the private `forms:admin diagnose` and `check` commands from OPERATIONS.md. Check runtime settings, initialized storage, permissions, disk space, and rate/storage limits. No email delivery is configured.
-- `npm start` and `node server.js` are equivalent here — both run `server.js`.
+- `.next` and `node_modules` are generated, not committed. Source deployment
+  alone cannot replace build/install steps.
+- An unexpected Plesk default page indicates a document-root/placeholder or
+  application routing issue. Confirm the canonical root and preserved
+  placeholder location before changing files.
+- For startup errors, check application root, `server.js`, selected Node and
+  successful build output before restart. Do not report release success until
+  public verification passes.
+- For old content, verify the deployed commit, successful build and Passenger
+  restart. Do not run another build while one is already active.
+- For unavailable forms, use the explicit admin wrapper. A direct console
+  command can show a missing configured path even when UI runtime variables
+  are set, because the command environment is separate. Check permissions,
+  storage readiness, free space and limits privately, without exposing PII.
+- `npm start` and `node server.js` are equivalent. Backup/export commands use
+  separate private sibling directories, never public or live DB folders.

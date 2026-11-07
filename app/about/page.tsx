@@ -6,6 +6,7 @@ import Timeline from "@/components/sections/about/Timeline";
 import CTASection from "@/components/sections/shared/CTASection";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/about" },
   title: "About",
   description:
     "Hillsboro deserves great live theater. Meet the local volunteers building HCT and learn what we hope to bring to the stage.",

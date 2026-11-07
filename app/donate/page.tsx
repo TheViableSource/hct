@@ -7,6 +7,7 @@ import SectionReveal from "@/components/ui/SectionReveal";
 import DonateForm from "@/components/forms/DonateForm";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/donate" },
   title: "Donate",
   description:
     "Help build Hillsboro Civic Theater before our first show. Your gift supports the music, sets, costumes, and lights that bring each show to life.",
