@@ -1,3 +1,7 @@
+import { getCmsContent } from "@/lib/cms/content";
+import { ExtraSections } from "@/components/cms/ContentProvider";
+
+import { ContentText } from "@/components/cms/ContentProvider";
 import type { Metadata } from "next";
 import PageHero from "@/components/layout/PageHero";
 import FoundingStory from "@/components/sections/about/FoundingStory";
@@ -5,12 +9,7 @@ import MissionVisionValues from "@/components/sections/about/MissionVisionValues
 import Timeline from "@/components/sections/about/Timeline";
 import CTASection from "@/components/sections/shared/CTASection";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/about" },
-  title: "About",
-  description:
-    "Hillsboro deserves great live theater. Meet the local volunteers building HCT and learn what we hope to bring to the stage.",
-};
+export async function generateMetadata(): Promise<Metadata> { const {document,preview}=await getCmsContent(); return {...document.seo["/about"], alternates:{canonical:"/about"}, ...(preview?{robots:{index:false,follow:false}}:{})}; }
 
 export default function AboutPage() {
   return (
@@ -18,10 +17,8 @@ export default function AboutPage() {
       <PageHero
         label="Our Story"
         title={
-          <>
-            Hillsboro Civic Theater<br />
-            Why We Exist
-          </>
+          <><ContentText>Hillsboro Civic Theater</ContentText><br /><ContentText>Why We Exist
+          </ContentText></>
         }
         subtitle="We believe Hillsboro deserves great live theater. HCT is built and run by the volunteers who call this place home."
         height="short"
@@ -37,6 +34,7 @@ export default function AboutPage() {
           { label: "Make a Donation", href: "/donate", variant: "ghost" },
         ]}
       />
+      <ExtraSections page="/about" />
     </>
   );
 }

@@ -1,4 +1,6 @@
-import Link from "next/link";
+
+import { ContentText } from "@/components/cms/ContentProvider";
+import { CmsLink as Link } from "@/components/cms/ContentProvider";
 import SectionReveal from "@/components/ui/SectionReveal";
 import SectionLabel from "@/components/ui/SectionLabel";
 
@@ -22,10 +24,9 @@ export default function OtherWays() {
     <section className="bg-hct-ink py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <SectionReveal className="mb-16">
-          <SectionLabel>Beyond Dollars</SectionLabel>
-          <h2 className="font-display font-light tracking-tight text-4xl md:text-5xl text-hct-cloud">
-            There are many ways to help HCT.
-          </h2>
+          <SectionLabel><ContentText>Beyond Dollars</ContentText></SectionLabel>
+          <h2 className="font-display font-light tracking-tight text-4xl md:text-5xl text-hct-cloud"><ContentText>There are many ways to help HCT.
+          </ContentText></h2>
         </SectionReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -33,17 +34,16 @@ export default function OtherWays() {
             <SectionReveal key={item.title} delay={i * 0.08}>
               <div className="h-full border-t border-hct-silver/20 pt-8">
                 <h3 className="font-display text-2xl text-hct-cloud mb-4">
-                  {item.title}
+                  <ContentText>{item.title}</ContentText>
                 </h3>
                 <p className="font-body font-light text-base text-hct-mist leading-relaxed mb-6">
-                  {item.body}
+                  <ContentText>{item.body}</ContentText>
                 </p>
                 <Link
                   href="/get-involved"
                   className="font-body text-sm tracking-wider uppercase text-hct-silver hover:text-hct-cloud transition-colors"
-                >
-                  Learn More →
-                </Link>
+                ><ContentText>Learn More →
+                </ContentText></Link>
               </div>
             </SectionReveal>
           ))}

@@ -1,4 +1,6 @@
 "use client";
+import { ContentText } from "@/components/cms/ContentProvider";
+
 
 import { motion, type Variants } from "framer-motion";
 import { Button } from "@/components/ui/Button";
@@ -40,35 +42,30 @@ export default function Hero() {
           variants={item}
           className="font-body text-xs tracking-[0.4em] uppercase text-hct-silver mb-8"
         >
-          {BRAND.location}
+          <ContentText>{BRAND.location}</ContentText>
         </motion.p>
 
         <h1 className="font-display font-light tracking-tight leading-[0.95] text-hct-cloud text-6xl md:text-8xl">
-          <motion.span variants={item} className="block">
-            Where Hillsboro
-          </motion.span>
-          <motion.span variants={item} className="block">
-            Takes the Stage
-          </motion.span>
+          <motion.span variants={item} className="block"><ContentText>Where Hillsboro
+          </ContentText></motion.span>
+          <motion.span variants={item} className="block"><ContentText>Takes the Stage
+          </ContentText></motion.span>
         </h1>
 
         <motion.p
           variants={item}
           className="font-body font-light text-lg text-hct-mist leading-relaxed max-w-xl mt-10"
-        >
-          A new theater is taking shape in Hillsboro. Local volunteers build and run it. If you love the thrill of a live show, you belong here.
-        </motion.p>
+        ><ContentText>A new theater is taking shape in Hillsboro. Local volunteers build and run it. If you love the thrill of a live show, you belong here.
+        </ContentText></motion.p>
 
         <motion.div
           variants={item}
           className="flex flex-col sm:flex-row items-center gap-4 mt-12"
         >
-          <Button href="/get-involved" variant="primary">
-            Join the Movement
-          </Button>
-          <Button href="/about" variant="ghost">
-            Learn Our Story
-          </Button>
+          <Button href="/get-involved" variant="primary"><ContentText>Join the Movement
+          </ContentText></Button>
+          <Button href="/about" variant="ghost"><ContentText>Learn Our Story
+          </ContentText></Button>
         </motion.div>
       </motion.div>
 

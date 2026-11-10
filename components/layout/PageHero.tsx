@@ -1,4 +1,8 @@
 "use client";
+import { ContentText } from "@/components/cms/ContentProvider";
+
+
+
 
 import { motion, type Variants } from "framer-motion";
 import { ReactNode } from "react";
@@ -44,7 +48,7 @@ export default function PageHero({
       className={`relative ${HEIGHTS[height]} flex items-center justify-center bg-hct-ink bg-atmosphere overflow-hidden`}
     >
       <div className="absolute inset-0 texture-celestial opacity-[0.04]" />
-      {glow && <div className="absolute inset-0 glow-spotlight" />}
+      <ContentText>{glow && <div className="absolute inset-0 glow-spotlight" />}</ContentText>
 
       <motion.div
         variants={container}
@@ -52,50 +56,50 @@ export default function PageHero({
         animate="show"
         className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-10 text-center flex flex-col items-center pt-32 pb-16 sm:pt-36 sm:pb-20"
       >
-        {label && (
+        <ContentText>{label && (
           <motion.div variants={item} className="flex flex-col items-center">
-            <SectionLabel>{label}</SectionLabel>
+            <SectionLabel><ContentText>{label}</ContentText></SectionLabel>
             <DecorativeRule className="mx-auto" />
           </motion.div>
-        )}
+        )}</ContentText>
 
         <motion.h1
           variants={item}
           className="font-display font-light tracking-tight leading-[1.05] text-hct-cloud text-4xl sm:text-5xl md:text-7xl text-balance max-w-4xl"
         >
-          {title}
+          <ContentText>{title}</ContentText>
         </motion.h1>
 
-        {subtitle && (
+        <ContentText>{subtitle && (
           <motion.p
             variants={item}
             className="font-body font-light text-lg text-hct-mist leading-relaxed max-w-2xl mt-8"
           >
-            {subtitle}
+            <ContentText>{subtitle}</ContentText>
           </motion.p>
-        )}
+        )}</ContentText>
 
-        {actions.length > 0 && (
+        <ContentText>{actions.length > 0 && (
           <motion.div
             variants={item}
             className="flex flex-col sm:flex-row flex-wrap justify-center items-stretch sm:items-center gap-4 mt-10 w-full sm:w-auto"
           >
             {actions.map((a) => (
               <Button key={a.label} href={a.href} variant={a.variant}>
-                {a.label}
+                <ContentText>{a.label}</ContentText>
               </Button>
             ))}
           </motion.div>
-        )}
+        )}</ContentText>
 
-        {caption && (
+        <ContentText>{caption && (
           <motion.p
             variants={item}
             className="text-sm text-hct-silver font-body tracking-wide mt-6 max-w-md"
           >
-            {caption}
+            <ContentText>{caption}</ContentText>
           </motion.p>
-        )}
+        )}</ContentText>
       </motion.div>
     </section>
   );

@@ -1,3 +1,5 @@
+import { ContentProvider } from "@/components/cms/ContentProvider";
+import { getCmsContent } from "@/lib/cms/content";
 import { SITE_URL } from "@/lib/constants";
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Inter, Cormorant_Infant } from "next/font/google";
@@ -47,19 +49,22 @@ export const viewport = {
   themeColor: "#0D1B2E",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const {document,preview}=await getCmsContent();
   return (
     <html lang="en">
       <body
         className={`${cormorant.variable} ${inter.variable} ${cormorantInfant.variable} font-body bg-hct-ink text-hct-mist antialiased`}
       >
+        <ContentProvider document={document} preview={preview}>
         <Nav />
         <main id="main-content" tabIndex={-1}>{children}</main>
         <Footer />
+        </ContentProvider>
       </body>
     </html>
   );

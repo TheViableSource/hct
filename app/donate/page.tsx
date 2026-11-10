@@ -1,3 +1,7 @@
+import { getCmsContent } from "@/lib/cms/content";
+import { ExtraSections } from "@/components/cms/ContentProvider";
+
+import { ContentText } from "@/components/cms/ContentProvider";
 import type { Metadata } from "next";
 import PageHero from "@/components/layout/PageHero";
 import WhyItMatters from "@/components/sections/donate/WhyItMatters";
@@ -6,12 +10,7 @@ import OtherWays from "@/components/sections/donate/OtherWays";
 import SectionReveal from "@/components/ui/SectionReveal";
 import DonateForm from "@/components/forms/DonateForm";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/donate" },
-  title: "Donate",
-  description:
-    "Help build Hillsboro Civic Theater before our first show. Your gift supports the music, sets, costumes, and lights that bring each show to life.",
-};
+export async function generateMetadata(): Promise<Metadata> { const {document,preview}=await getCmsContent(); return {...document.seo["/donate"], alternates:{canonical:"/donate"}, ...(preview?{robots:{index:false,follow:false}}:{})}; }
 
 export default function DonatePage() {
   return (
@@ -19,11 +18,9 @@ export default function DonatePage() {
       <PageHero
         label="Support HCT"
         title={
-          <>
-            Make This Theater
-            <br />
-            Possible
-          </>
+          <><ContentText>Make This Theater
+            </ContentText><br /><ContentText>Possible
+          </ContentText></>
         }
         subtitle="Help build a theater for Hillsboro. Your gift supports the people and work that bring each show to life. Together, we can make something special."
         actions={[{ label: "Online Giving Updates", href: "#donate-form", variant: "primary" }]}
@@ -38,18 +35,17 @@ export default function DonatePage() {
       <section id="donate-form" className="bg-hct-velvet py-24 md:py-32 scroll-mt-20">
         <div className="max-w-6xl mx-auto px-6 md:px-10">
           <SectionReveal className="mb-12">
-            <h3 className="font-display font-light tracking-tight text-3xl md:text-4xl text-hct-cloud mb-4">
-              Online Giving Coming Soon
-            </h3>
-            <p className="font-body font-light text-lg text-hct-mist leading-relaxed max-w-xl">
-              We are setting up a safe way to give. Online gifts are not available yet.
-            </p>
+            <h3 className="font-display font-light tracking-tight text-3xl md:text-4xl text-hct-cloud mb-4"><ContentText>Online Giving Coming Soon
+            </ContentText></h3>
+            <p className="font-body font-light text-lg text-hct-mist leading-relaxed max-w-xl"><ContentText>We are setting up a safe way to give. Online gifts are not available yet.
+            </ContentText></p>
           </SectionReveal>
           <SectionReveal delay={0.1}>
             <DonateForm />
           </SectionReveal>
         </div>
       </section>
+      <ExtraSections page="/donate" />
     </>
   );
 }

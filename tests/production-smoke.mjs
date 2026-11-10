@@ -14,7 +14,7 @@ const probe=net.createServer();
 probe.listen(0,'127.0.0.1');await once(probe,'listening');
 const port=probe.address().port;await new Promise(resolve=>probe.close(resolve));
 const origin=`http://127.0.0.1:${port}`;
-const server=spawn(process.execPath,['node_modules/next/dist/bin/next','start','--hostname','127.0.0.1','--port',String(port)],{env:{...process.env,NODE_ENV:'production',HCT_FORM_DATA_DIR:directory,HCT_FORM_ORIGINS:origin},stdio:['ignore','pipe','pipe']});
+const server=spawn(process.execPath,['node_modules/next/dist/bin/next','start','--hostname','127.0.0.1','--port',String(port)],{env:{...process.env,NODE_ENV:'production',HCT_FORM_DATA_DIR:directory,HCT_FORM_ORIGINS:origin,HCT_CMS_DATA_DIR:'',HCT_FORM_MAIL_QUEUE_ENABLED:'false',HCT_MAIL_DELIVERY_ENABLED:'false'},stdio:['ignore','pipe','pipe']});
 let ready=false;server.stdout.on('data', chunk=>{if(chunk.toString().includes('Ready in'))ready=true;});
 // Do not echo server logs or request data, even for synthetic tests.
 server.stderr.resume();

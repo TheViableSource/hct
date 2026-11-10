@@ -1,4 +1,6 @@
 "use client";
+import { ContentText } from "@/components/cms/ContentProvider";
+
 
 import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 
@@ -33,7 +35,7 @@ export default function SectionReveal({
   // Content is visible by default, even without JavaScript or observer support.
   return (
     <Tag ref={ref} className={`${className}${revealed ? " hct-section-enter" : ""}`} style={{ "--reveal-delay": `${delay}s` } as CSSProperties}>
-      {children}
+      <ContentText>{children}</ContentText>
     </Tag>
   );
 }

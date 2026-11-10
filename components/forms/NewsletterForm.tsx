@@ -1,4 +1,6 @@
 "use client";
+import { ContentText, useText } from "@/components/cms/ContentProvider";
+
 
 import ConsentFields from "./ConsentFields";
 import { FormEvent } from "react";
@@ -7,6 +9,7 @@ import { ActionButton } from "@/components/ui/Button";
 import { FormError } from "./fields";
 
 export default function NewsletterForm() {
+  const translate=useText();
   const { status, submit, error } = useWebsiteForm();
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -22,9 +25,9 @@ export default function NewsletterForm() {
 
   if (status === "success") {
     return (
-      <p className="font-accent italic text-xl text-hct-spotlight">
+      <p className="font-accent italic text-xl text-hct-spotlight"><ContentText>
         Your newsletter signup is saved. Thank you.
-      </p>
+      </ContentText></p>
     );
   }
 
@@ -41,19 +44,19 @@ export default function NewsletterForm() {
         maxLength={254}
         required
         disabled={submitting}
-        placeholder="Your email address"
-        aria-label="Your email address"
+        placeholder={translate("Your email address")}
+        aria-label={translate("Your email address")}
         className="flex-1 bg-transparent border-b border-hct-silver/60 text-hct-cloud placeholder:text-hct-silver focus:border-hct-silver outline-none py-3 font-body text-base font-light transition-colors disabled:opacity-50"
       />
       <ConsentFields disabled={submitting} required />
       <ActionButton type="submit" disabled={submitting} className="shrink-0">
-        {submitting ? "Sending…" : "Stay Connected"}
+        <ContentText>{submitting ? "Sending…" : "Stay Connected"}</ContentText>
       </ActionButton>
-      {status === "error" && (
+      <ContentText>{status === "error" && (
         <div className="">
           <FormError message={error} />
         </div>
-      )}
+      )}</ContentText>
     </form>
   );
 }

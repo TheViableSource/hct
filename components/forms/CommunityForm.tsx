@@ -1,4 +1,6 @@
 "use client";
+import { ContentText } from "@/components/cms/ContentProvider";
+
 
 import ConsentFields from "./ConsentFields";
 import { FormEvent } from "react";
@@ -71,10 +73,10 @@ export default function CommunityForm() {
       <ConsentFields disabled={submitting} />
       <div className="pt-2">
         <ActionButton type="submit" disabled={submitting}>
-          {submitting ? "Sending…" : "Join the Community"}
+          <ContentText>{submitting ? "Sending…" : "Join the Community"}</ContentText>
         </ActionButton>
       </div>
-      {status === "error" && <FormError message={error} />}
+      <ContentText>{status === "error" && <FormError message={error} />}</ContentText>
     </form>
   );
 }

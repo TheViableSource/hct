@@ -1,3 +1,7 @@
+import { getCmsContent } from "@/lib/cms/content";
+import { ExtraSections } from "@/components/cms/ContentProvider";
+
+import { ContentText } from "@/components/cms/ContentProvider";
 import type { Metadata } from "next";
 import PageHero from "@/components/layout/PageHero";
 import FoundersNote from "@/components/sections/get-involved/FoundersNote";
@@ -8,12 +12,7 @@ import SectionReveal from "@/components/ui/SectionReveal";
 import SectionLabel from "@/components/ui/SectionLabel";
 import MasterForm from "@/components/forms/MasterForm";
 
-export const metadata: Metadata = {
-  alternates: { canonical: "/get-involved" },
-  title: "Get Involved",
-  description:
-    "Help shape HCT from the start. Join us as a sponsor, volunteer, performer, musician, or partner.",
-};
+export async function generateMetadata(): Promise<Metadata> { const {document,preview}=await getCmsContent(); return {...document.seo["/get-involved"], alternates:{canonical:"/get-involved"}, ...(preview?{robots:{index:false,follow:false}}:{})}; }
 
 export default function GetInvolvedPage() {
   return (
@@ -21,11 +20,9 @@ export default function GetInvolvedPage() {
       <PageHero
         label="Get Involved"
         title={
-          <>
-            The curtain hasn&apos;t risen yet.
-            <br />
-            Be here before it does.
-          </>
+          <><ContentText>The curtain hasn&apos;t risen yet.
+            </ContentText><br /><ContentText>Be here before it does.
+          </ContentText></>
         }
         subtitle="HCT is just getting started. Help shape what comes next. We need sponsors, volunteers, performers, musicians, and partners of all kinds."
         actions={[
@@ -57,16 +54,16 @@ export default function GetInvolvedPage() {
         <div className="absolute inset-0 glow-spotlight" />
         <div className="relative max-w-6xl mx-auto px-6 md:px-10">
           <SectionReveal className="mb-12">
-            <SectionLabel>Take the First Step</SectionLabel>
-            <h2 className="font-display font-light tracking-tight text-4xl md:text-5xl text-hct-cloud">
-              Tell us how you want to be part of this.
-            </h2>
+            <SectionLabel><ContentText>Take the First Step</ContentText></SectionLabel>
+            <h2 className="font-display font-light tracking-tight text-4xl md:text-5xl text-hct-cloud"><ContentText>Tell us how you want to be part of this.
+            </ContentText></h2>
           </SectionReveal>
           <SectionReveal delay={0.1}>
             <MasterForm />
           </SectionReveal>
         </div>
       </section>
+      <ExtraSections page="/get-involved" />
     </>
   );
 }

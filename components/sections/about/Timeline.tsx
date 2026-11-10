@@ -1,3 +1,5 @@
+
+import { ContentText } from "@/components/cms/ContentProvider";
 import SectionReveal from "@/components/ui/SectionReveal";
 import SectionLabel from "@/components/ui/SectionLabel";
 import { MILESTONES } from "@/lib/constants";
@@ -7,10 +9,9 @@ export default function Timeline() {
     <section className="bg-hct-ink py-24 md:py-32">
       <div className="max-w-6xl mx-auto px-6 md:px-10">
         <SectionReveal className="mb-16">
-          <SectionLabel>The Road Ahead</SectionLabel>
-          <h2 className="font-display font-light tracking-tight text-4xl md:text-5xl text-hct-cloud">
-            Building Something That Lasts
-          </h2>
+          <SectionLabel><ContentText>The Road Ahead</ContentText></SectionLabel>
+          <h2 className="font-display font-light tracking-tight text-4xl md:text-5xl text-hct-cloud"><ContentText>Building Something That Lasts
+          </ContentText></h2>
         </SectionReveal>
 
         <div className="max-w-3xl">
@@ -30,10 +31,10 @@ export default function Timeline() {
                       m.active ? "text-hct-cloud" : "text-hct-mist"
                     }`}
                   >
-                    {m.phase}
+                    <ContentText>{m.phase}</ContentText>
                   </h3>
                   <p className="font-body font-light text-base text-hct-mist/80 leading-relaxed">
-                    {m.body}
+                    <ContentText>{m.body}</ContentText>
                   </p>
                 </li>
               </SectionReveal>

@@ -68,3 +68,7 @@ Brand colors and fonts live in `tailwind.config.ts` under the `hct` color namesp
 Deploy to persistent Node hosting using [DEPLOY-PLESK.md](DEPLOY-PLESK.md) and
 [OPERATIONS.md](OPERATIONS.md). Ephemeral/serverless disks are not supported by
 this storage design. No form data belongs in Git or the app deployment folder.
+
+## Backend content editor
+
+The optional CMS provides authenticated copy, links, sections, blog and search metadata editing with separate draft, private preview and publish controls. Storage and editor access must be provisioned separately. Outbound form email remains disabled by default until its authenticated mail route is configured and tested.

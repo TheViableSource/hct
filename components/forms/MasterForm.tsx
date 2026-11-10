@@ -1,4 +1,6 @@
 "use client";
+import { ContentText } from "@/components/cms/ContentProvider";
+
 
 import ConsentFields from "./ConsentFields";
 import { FormEvent } from "react";
@@ -101,13 +103,13 @@ export default function MasterForm() {
       <ConsentFields disabled={submitting} />
       <div className="pt-2">
         <ActionButton type="submit" disabled={submitting}>
-          {submitting ? "Sending…" : "Let's Talk"}
+          <ContentText>{submitting ? "Sending…" : "Let's Talk"}</ContentText>
         </ActionButton>
       </div>
-      <p className="text-xs text-hct-silver font-body leading-relaxed">
+      <p className="text-xs text-hct-silver font-body leading-relaxed"><ContentText>
         We&apos;ll be in touch soon. Each message matters to us. We reply to every person.
-      </p>
-      {status === "error" && <FormError message={error} />}
+      </ContentText></p>
+      <ContentText>{status === "error" && <FormError message={error} />}</ContentText>
     </form>
   );
 }

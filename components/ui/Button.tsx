@@ -1,4 +1,6 @@
-import Link from "next/link";
+
+import { ContentText } from "@/components/cms/ContentProvider";
+import { CmsLink as Link } from "@/components/cms/ContentProvider";
 import { ReactNode } from "react";
 import type { ButtonVariant } from "@/lib/types";
 
@@ -38,7 +40,7 @@ export function Button({
 }: LinkButtonProps) {
   return (
     <Link href={href} className={`${BASE} ${VARIANTS[variant]} ${className}`}>
-      {children}
+      <ContentText>{children}</ContentText>
     </Link>
   );
 }
@@ -58,7 +60,7 @@ export function ActionButton({
       disabled={disabled}
       className={`${BASE} ${VARIANTS[variant]} ${className}`}
     >
-      {children}
+      <ContentText>{children}</ContentText>
     </button>
   );
 }

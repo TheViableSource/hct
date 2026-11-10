@@ -1,3 +1,5 @@
+
+import { ContentText } from "@/components/cms/ContentProvider";
 import { ReactNode } from "react";
 
 export default function SectionLabel({
@@ -11,7 +13,7 @@ export default function SectionLabel({
     <p
       className={`font-body text-xs tracking-[0.3em] uppercase text-hct-silver mb-4 ${className}`}
     >
-      {children}
+      <ContentText>{children}</ContentText>
     </p>
   );
 }

@@ -1,4 +1,6 @@
-import Link from "next/link";
+
+import { ContentText, CmsLink } from "@/components/cms/ContentProvider";
+import { CmsLink as Link } from "@/components/cms/ContentProvider";
 import { Facebook, Instagram } from "lucide-react";
 import { NAV_LINKS, BRAND } from "@/lib/constants";
 
@@ -9,22 +11,20 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16">
           {/* Mark + tagline */}
           <div>
-            <p className="font-display text-3xl font-light tracking-[0.15em] text-hct-cloud mb-4">
-              HCT
-            </p>
+            <p className="font-display text-3xl font-light tracking-[0.15em] text-hct-cloud mb-4"><ContentText>HCT
+            </ContentText></p>
             <p className="font-accent italic text-lg text-hct-silver mb-3">
-              {BRAND.tagline}
+              <ContentText>{BRAND.tagline}</ContentText>
             </p>
             <p className="font-body font-light text-sm text-hct-mist leading-relaxed max-w-xs">
-              {BRAND.mission}
+              <ContentText>{BRAND.mission}</ContentText>
             </p>
           </div>
 
           {/* Navigation */}
           <div>
-            <p className="font-body text-xs tracking-[0.3em] uppercase text-hct-silver mb-5">
-              Explore
-            </p>
+            <p className="font-body text-xs tracking-[0.3em] uppercase text-hct-silver mb-5"><ContentText>Explore
+            </ContentText></p>
             <ul className="space-y-1">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
@@ -32,7 +32,7 @@ export default function Footer() {
                     href={link.href}
                     className="inline-flex min-h-11 items-center font-body text-sm text-hct-mist hover:text-hct-cloud transition-colors"
                   >
-                    {link.label}
+                    <ContentText>{link.label}</ContentText>
                   </Link>
                 </li>
               ))}
@@ -41,17 +41,16 @@ export default function Footer() {
 
           {/* Contact + social */}
           <div>
-            <p className="font-body text-xs tracking-[0.3em] uppercase text-hct-silver mb-5">
-              Connect
-            </p>
-            <a
+            <p className="font-body text-xs tracking-[0.3em] uppercase text-hct-silver mb-5"><ContentText>Connect
+            </ContentText></p>
+            <CmsLink
               href={`mailto:${BRAND.email}`}
               className="font-body text-sm text-hct-mist hover:text-hct-cloud transition-colors block py-3 mb-3 break-words"
             >
-              {BRAND.email}
-            </a>
+              <ContentText>{BRAND.email}</ContentText>
+            </CmsLink>
             <div className="flex items-center gap-4">
-              <a
+              <CmsLink
                 href={BRAND.social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -59,8 +58,8 @@ export default function Footer() {
                 className="min-h-11 min-w-11 inline-flex items-center justify-center border border-hct-silver/25 rounded-sm text-hct-silver hover:text-hct-cloud hover:border-hct-silver transition-colors"
               >
                 <Facebook size={20} strokeWidth={1.5} />
-              </a>
-              <a
+              </CmsLink>
+              <CmsLink
                 href={BRAND.social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -68,15 +67,14 @@ export default function Footer() {
                 className="min-h-11 min-w-11 inline-flex items-center justify-center border border-hct-silver/25 rounded-sm text-hct-silver hover:text-hct-cloud hover:border-hct-silver transition-colors"
               >
                 <Instagram size={20} strokeWidth={1.5} />
-              </a>
+              </CmsLink>
             </div>
           </div>
         </div>
 
         <div className="mt-16 pt-8 border-t border-hct-silver/10">
-          <p className="text-xs text-hct-silver font-body tracking-wide">
-            © 2025 Hillsboro Civic Theater. A community nonprofit theater.
-          </p>
+          <p className="text-xs text-hct-silver font-body tracking-wide"><ContentText>© 2025 Hillsboro Civic Theater. A community nonprofit theater.
+          </ContentText></p>
         </div>
       </div>
     </footer>

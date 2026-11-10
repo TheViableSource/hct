@@ -1,4 +1,6 @@
 "use client";
+import { ContentText, useText } from "@/components/cms/ContentProvider";
+
 
 import { ReactNode } from "react";
 import { motion } from "framer-motion";
@@ -20,10 +22,10 @@ export function FieldLabel({
       htmlFor={htmlFor}
       className="block font-body text-sm tracking-wider text-hct-silver mb-2"
     >
-      {children}
+      <ContentText>{children}</ContentText>
       {optional && (
         <span className="text-hct-silver ml-2 normal-case tracking-normal text-xs">
-          (optional)
+          <ContentText>(optional)</ContentText>
         </span>
       )}
     </label>
@@ -47,10 +49,11 @@ export function TextField({
   placeholder?: string;
   disabled?: boolean;
 }) {
+  const translate=useText();
   return (
     <div>
       <FieldLabel htmlFor={name} optional={optional}>
-        {label}
+        <ContentText>{label}</ContentText>
       </FieldLabel>
       <input
         id={name}
@@ -59,7 +62,7 @@ export function TextField({
         maxLength={type === "email" ? 254 : 200}
         required={required}
         disabled={disabled}
-        placeholder={placeholder}
+        placeholder={translate(placeholder)}
         className={inputBase}
       />
     </div>
@@ -79,10 +82,11 @@ export function TextArea({
   disabled?: boolean;
   placeholder?: string;
 }) {
+  const translate=useText();
   return (
     <div>
       <FieldLabel htmlFor={name} optional={optional}>
-        {label}
+        <ContentText>{label}</ContentText>
       </FieldLabel>
       <textarea
         maxLength={4000}
@@ -90,7 +94,7 @@ export function TextArea({
         name={name}
         rows={4}
         disabled={disabled}
-        placeholder={placeholder}
+        placeholder={translate(placeholder)}
         className={`${inputBase} resize-none`}
       />
     </div>
@@ -111,7 +115,7 @@ export function CheckboxGroup({
   return (
     <fieldset>
       <legend className="font-body text-sm tracking-wider text-hct-silver mb-4">
-        {label}
+        <ContentText>{label}</ContentText>
       </legend>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {options.map((opt) => (
@@ -127,7 +131,7 @@ export function CheckboxGroup({
               className="appearance-none w-4 h-4 border border-hct-silver/60 rounded-sm checked:bg-hct-silver checked:border-hct-silver transition-colors shrink-0 cursor-pointer"
             />
             <span className="font-body font-light text-sm text-hct-mist group-hover:text-hct-cloud transition-colors">
-              {opt}
+              <ContentText>{opt}</ContentText>
             </span>
           </label>
         ))}
@@ -149,7 +153,7 @@ export function SelectField({
 }) {
   return (
     <div>
-      <FieldLabel htmlFor={name}>{label}</FieldLabel>
+      <FieldLabel htmlFor={name}><ContentText>{label}</ContentText></FieldLabel>
       <div className="relative">
         <select
           id={name}
@@ -158,18 +162,18 @@ export function SelectField({
           className={`${inputBase} appearance-none cursor-pointer pr-8`}
           defaultValue=""
         >
-          <option value="" disabled className="bg-hct-ink text-hct-silver">
+          <option value="" disabled className="bg-hct-ink text-hct-silver"><ContentText>
             Select one…
-          </option>
+          </ContentText></option>
           {options.map((opt) => (
             <option key={opt} value={opt} className="bg-hct-ink text-hct-cloud">
-              {opt}
+              <ContentText>{opt}</ContentText>
             </option>
           ))}
         </select>
-        <span className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2 text-hct-silver/50">
+        <span className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2 text-hct-silver/50"><ContentText>
           ▾
-        </span>
+        </ContentText></span>
       </div>
     </div>
   );
@@ -178,7 +182,7 @@ export function SelectField({
 export function FormError({ message }: { message?: string }) {
   return (
     <p role="alert" className="text-rose-300 text-sm font-body">
-      {message || "We could not save your form. Please try again later."}
+      <ContentText>{message || "We could not save your form. Please try again later."}</ContentText>
     </p>
   );
 }
@@ -196,7 +200,7 @@ export function SuccessMessage({
       className="bg-hct-ink/60 border border-hct-silver/20 rounded-sm p-10 text-center bg-atmosphere"
     >
       <p className="font-display font-light text-2xl md:text-3xl text-hct-cloud">
-        {message}
+        <ContentText>{message}</ContentText>
       </p>
     </motion.div>
   );

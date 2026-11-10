@@ -1,4 +1,6 @@
 "use client";
+import { ContentText } from "@/components/cms/ContentProvider";
+
 
 import { motion } from "framer-motion";
 
@@ -11,9 +13,8 @@ export default function ScrollIndicator() {
       className="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2"
       aria-hidden
     >
-      <span className="font-body text-[10px] tracking-[0.3em] uppercase text-hct-silver/40">
-        Scroll
-      </span>
+      <span className="font-body text-[10px] tracking-[0.3em] uppercase text-hct-silver/40"><ContentText>Scroll
+      </ContentText></span>
       <div className="w-px h-12 bg-gradient-to-b from-hct-silver/40 to-transparent animate-fade-pulse" />
     </motion.div>
   );

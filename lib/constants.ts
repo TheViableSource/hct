@@ -18,7 +18,7 @@ export const BRAND = {
   mission:
     "A theater run by local volunteers. We bring big musicals to the stage with a full live orchestra.",
   location: "Hillsboro · Oregon",
-  email: "hello@hillsborocivictheater.org",
+  email: "hello@hillsborocivictheatre.com",
   social: {
     facebook: "https://facebook.com",
     instagram: "https://instagram.com",
@@ -31,6 +31,7 @@ export const NAV_LINKS: NavLink[] = [
   { label: "Community", href: "/community" },
   { label: "Donate", href: "/donate" },
   { label: "Get Involved", href: "/get-involved" },
+  { label: "News", href: "/blog" },
 ];
 
 export const PILLARS: Pillar[] = [
